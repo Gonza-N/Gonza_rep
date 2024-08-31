@@ -1,0 +1,78 @@
+\documentclass[
+    spanish, % Idioma: spanish, english, etc.
+    letterpaper, 
+    oneside
+]{exam}
+
+% Paquetes necesarios
+\usepackage[utf8]{inputenc} % Codificación del texto
+\usepackage[spanish]{babel} % Soporte para idioma español
+\usepackage{amsmath}        % Mejoras en la tipografía de las matemáticas
+\usepackage{amsfonts}       % Tipografía matemática
+\usepackage{amssymb}        % Símbolos matemáticos
+\usepackage{graphicx}       % Soporte para imágenes
+\usepackage{mdframed}       % Para recuadros alrededor de texto
+
+% Nuevo comando para preguntas con caja
+\newcommand{\boxquestion}[1]{\begin{mdframed}\textbf{#1}\end{mdframed}}
+
+\begin{document}
+
+\begin{questions}
+
+\question
+\begin{parts}
+    \part Calcular el determinante de las siguientes matrices:
+    \[
+\begin{bmatrix}
+    \frac{1}{sC} + R_1 & \omega \\
+    \omega & R_2 + R_3
+\end{bmatrix},
+\begin{bmatrix}
+    5 & 7 & 2 \\
+    1 & 2 & 0 \\
+    8 & 4 & 0
+\end{bmatrix}
+\]
+\begin{mdframed}
+\textbf{Solución:}
+
+% Aquí va la solución de las matrices
+\end{mdframed}
+
+\part Resolver mediante regla de Cramer los siguientes sistemas de ecuaciones:
+
+\begin{equation*}
+\begin{aligned}
+    &2x + 5y = 4 \\
+    -&3x + y = 0 \quad \text{Donde las incógnitas son \textit{\(x\) e \(y\)}}
+\end{aligned}
+\end{equation*}
+
+\begin{mdframed}
+\textbf{Solución:}
+
+% Aquí va la solución del sistema de ecuaciones
+\end{mdframed}
+
+\part Separar en fracciones parciales las siguientes expresiones en el "dominio s".
+% Aquí irían las expresiones
+\begin{mdframed}
+\textbf{Solución:}
+% Aquí va la solución para fracciones parciales
+\end{mdframed}
+
+\part Escribir en su forma polar el siguiente número complejo.
+\[
+\frac{a + jb}{c - jd}
+\]
+\begin{mdframed}
+\textbf{Solución:}
+% Aquí va la solución
+\end{mdframed}
+
+\end{parts}
+
+\end{questions}
+
+\end{document}

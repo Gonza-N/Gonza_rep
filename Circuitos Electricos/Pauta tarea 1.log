@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.11)  31 AUG 2024 00:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.11)  2 SEP 2024 19:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -503,7 +503,7 @@ Here is how much of TeX's memory you used:
  29771 multiletter control sequences out of 15000+600000
  561120 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,93p,522b,416s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,93p,522b,402s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public
 /amsfonts/cm/cmex10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/t
@@ -514,7 +514,7 @@ a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Gonza
 lo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
 Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti
 10.pfb>
-Output written on "Pauta tarea 1.pdf" (1 page, 86020 bytes).
+Output written on "Pauta tarea 1.pdf" (1 page, 86218 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

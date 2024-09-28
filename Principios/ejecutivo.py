@@ -1,4 +1,4 @@
-# Celda de Google Colab: Código del Ejecutivo
+# ejecutivo.py - Código del Ejecutivo
 import socket
 import json
 
@@ -14,27 +14,33 @@ def ejecutivo_terminal():
     ejecutivo.send(json.dumps((email, password)).encode())
 
     # Esperar respuesta del servidor
-    respuesta = ejecutivo.recv(1024).decode()
-    print(f"[Servidor]: {respuesta}")
+    try:
+        respuesta = ejecutivo.recv(1024).decode()
+        print(f"[Servidor]: {respuesta}")
 
-    if "Autenticación exitosa" in respuesta:
-        while True:
-            print("\nComandos disponibles:")
-            print("[1] Ver estado de clientes conectados")
-            print("[2] Desconectar cliente")
-            print("[7] Salir")
+        if "Autenticación exitosa" in respuesta:
+            while True:
+                print("\nComandos disponibles:")
+                print("[1] Ver estado de clientes conectados")
+                print("[2] Desconectar cliente")
+                print("[7] Salir")
 
-            opcion = input("Ingrese un comando: ")
+                opcion = input("Ingrese un comando: ")
 
-            if opcion == "7":
-                ejecutivo.send("7".encode())
-                print("[Ejecutivo] Desconectando...")
-                ejecutivo.close()
-                break
-            else:
-                ejecutivo.send(opcion.encode())
-                respuesta = ejecutivo.recv(1024).decode()
-                print(f"[Servidor]: {respuesta}")
+                if opcion == "7":
+                    ejecutivo.send("7".encode())
+                    print("[Ejecutivo] Desconectando...")
+                    ejecutivo.close()
+                    break
+                else:
+                    ejecutivo.send(opcion.encode())
+                    respuesta = ejecutivo.recv(1024).decode()
+                    print(f"[Servidor]: {respuesta}")
+
+    except Exception as e:
+        print(f"[Ejecutivo] Error durante la comunicación: {e}")
+        ejecutivo.close()
 
 # Ejecutar el ejecutivo
-ejecutivo_terminal()
+if __name__ == "__main__":
+    ejecutivo_terminal()

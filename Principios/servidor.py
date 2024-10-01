@@ -13,7 +13,7 @@ def cargar_db():
             return json.load(f)
     except FileNotFoundError:
         return {
-            "gonzalo@gmail.com": {"password": "1234", "historial_compras": []},
+            "gonza": {"password": "1234", "historial_compras": []},
             "ammi@gmail.com": {"password": "5678", "historial_compras": []}
         }
 
@@ -22,18 +22,21 @@ clientes_conectados = {}
 cola_espera = deque()
 
 def manejar_cliente(cliente_socket, direccion):
-    email = cliente_socket.recv(1024).decode().strip()
-    if email in clientes_db:
-        cliente_socket.send("Correo encontrado. Por favor ingrese su contraseña:".encode())
-        password = cliente_socket.recv(1024).decode().strip()
-        if clientes_db[email]["password"] == password:
-            cliente_socket.send("Autenticación exitosa.".encode())
-            clientes_conectados[email] = cliente_socket
-            manejar_sesiones(cliente_socket, email)
-        else:
-            cliente_socket.send("Error: Contraseña incorrecta.".encode())
-    else:
-        cliente_socket.send("Error: Correo no encontrado.".encode())
+    while True:
+        email = cliente_socket.recv(1024).decode().strip()
+        if email in clientes_db:
+            cliente_socket.send("Correo encontrado. Por favor ingrese su contraseña:".encode())
+            while True:
+                password = cliente_socket.recv(1024).decode().strip()
+                if clientes_db[email]["password"] == password:
+                    cliente_socket.send("Autenticación exitosa.".encode())
+                    clientes_conectados[email] = cliente_socket
+                    manejar_sesiones(cliente_socket, email)
+                else:
+                    cliente_socket.send("Error: Contraseña incorrecta.".encode())
+        if not email in clientes_db:
+            cliente_socket.send("Error: Correo no encontrado.".encode())
+
 
 def manejar_sesiones(cliente_socket, email):
     while True:
@@ -42,7 +45,44 @@ def manejar_sesiones(cliente_socket, email):
             nueva_contraseña = cliente_socket.recv(1024).decode().strip()
             clientes_db[email]["password"] = nueva_contraseña
             guardar_db()
+            print(f"Contraseña de {email} cambiada.")
             cliente_socket.send("Contraseña cambiada exitosamente.".encode())
+        elif solicitud == "2":
+            historial_compras = clientes_db[email]["historial_compras"]
+            cliente_socket.send(json.dumps(historial_compras).encode())
+        elif solicitud == "3":
+            producto = cliente_socket.recv(1024).decode().strip()
+            clientes_db[email]["historial_compras"].append(producto)
+            guardar_db()
+            print(f"{email} compró {producto}.")
+            cliente_socket.send("Compra exitosa.".encode())
+        elif solicitud == "4":
+            producto = cliente_socket.recv(1024).decode().strip()
+            if producto in clientes_db[email]["historial_compras"]:
+                clientes_db[email]["historial_compras"].remove(producto)
+                guardar_db()
+                print(f"{email} devolvió {producto}.")
+                cliente_socket.send("Devolución exitosa.".encode())
+            else:
+                cliente_socket.send("Error: Producto no encontrado.".encode())
+        elif solicitud == "5":
+            producto = cliente_socket.recv(1024).decode().strip()
+            if producto in clientes_db[email]["historial_compras"]:
+                clientes_db[email]["historial_compras"].remove(producto)
+                guardar_db()
+                print(f"{email} confirmó envío de {producto}.")
+                cliente_socket.send("Envío confirmado.".encode())
+            else:
+                cliente_socket.send("Error: Producto no encontrado.".encode())
+        elif solicitud == "6":
+            cola_espera.append(email)
+            print(f"{email} en cola de espera.")
+            cliente_socket.send("En cola de espera.".encode())
+            if len(cola_espera) == 1:
+                ejecutivo = cola_espera.popleft()
+                print(f"Conectando a {ejecutivo} con un ejecutivo.")
+                ejecutivo_socket = clientes_conectados[ejecutivo]
+                ejecutivo_socket.send("Conectado con un ejecutivo.".encode())
         elif solicitud == "7":
             cliente_socket.send("Desconectado.".encode())
             break

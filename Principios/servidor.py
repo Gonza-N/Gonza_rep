@@ -2,6 +2,8 @@ import json
 import socket
 import threading
 from collections import deque
+import random
+import datetime
 
 def guardar_db():
     with open('clientes_db.json', 'w') as f:
@@ -49,19 +51,28 @@ def manejar_sesiones(cliente_socket, email):
         elif solicitud == "3":
             while True:
                 producto = cliente_socket.recv(1024).decode().strip()
-                if producto in clientes_db[productos]:
-                    cantidad = cliente_socket.recv(1024).decode().int()
-                    stock = clientes_db[producto][stock]
+                if producto in clientes_db["productos"]:
+                    cliente_socket.send("Producto encontrado. Ingrese la cantidad a comprar:".encode())
+                    cantidad = cliente_socket.recv(1024).decode()
                     while True:
+                        stock = clientes_db["productos"][producto]["stock"]
+                        cantidad = int(cantidad)
+                        stock = int(stock)
                         if cantidad <= stock:
-                            clientes_db[producto][stock] = stock - cantidad
+                            cliente_socket.send("Stock disponible.".encode())
+                            clientes_db["productos"][producto]["stock"] = stock - cantidad
+                            fecha_aleatoria = datetime.date(2020, 1, 1) + datetime.timedelta(days=random.randint(0, (datetime.date(2024, 1, 1) - datetime.date(2020, 1, 1)).days))
+                            clientes_db[email]["historial_compras"].append(producto + f" [x{cantidad}]" + f" [{fecha_aleatoria}]")
                             guardar_db()
                             print(f"{email} compró {producto} [x{cantidad}].")
-                            cliente_socket.send("Compra exitosa.".encode())
+                            break
+                    
                         else:
-                            cliente_socket.send("Error: Stock insuficiente.".encode())
+                           print("Error: Stock insuficiente.")
+                    break
                 else:
-                    cliente_socket.send("Error: Producto no encontrado. Porfavor ingrese otro producto.".encode())
+                    print("Error: Producto no encontrado. Porfavor ingrese otro producto.")
+
         elif solicitud == "4":
             producto = cliente_socket.recv(1024).decode().strip()
             if producto in clientes_db[email]["historial_compras"]:

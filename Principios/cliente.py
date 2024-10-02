@@ -46,7 +46,6 @@ def cliente_terminal():
                     if nueva_contraseña == repetir_contraseña:
                         cliente.send(nueva_contraseña.encode())
                         respuesta = cliente.recv(1024).decode()
-                        print(f"[SERVIDOR]: {respuesta}")
                         break
                     else:
                         print("Error: Las contraseñas no coinciden.")
@@ -54,12 +53,22 @@ def cliente_terminal():
                 historial_compras = cliente.recv(1024).decode()
                 print(f"[SERVIDOR]: {historial_compras}")
             if opcion == "3":
-                producto = input("Ingrese el producto a comprar:").strip()
-                cantidad = input("Ingrese la cantidad a comprar:").strip()
-                cliente.send(producto.encode())
-                cliente.send(cantidad.encode())
-                respuesta = cliente.recv(1024).decode()
-                print(f"[SERVIDOR]: {respuesta}")
+                while True:
+                    producto = input("Ingrese el producto a comprar: ").strip().lower()
+                    cliente.send(producto.encode())
+                    respuesta = cliente.recv(1024).decode()
+                    if "Producto encontrado" in respuesta:
+                        print(f"[SERVIDOR]: {respuesta}")
+                        cantidad = input("Ingrese la cantidad a comprar: ").strip()
+                        cliente.send(cantidad.encode())
+                        respuesta = cliente.recv(1024).decode()
+                        if "Stock disponible" in respuesta:
+                            print(f"[SERVIDOR]: {respuesta}")
+                            print("Compra Exitosa")
+                            break
+                        else:
+                            print(f"[SERVIDOR]: {respuesta}")
+                    break
             if opcion == "4":
                 producto = input("Ingrese el producto a devolver: ").strip()
                 cliente.send(producto.encode())

@@ -50,28 +50,66 @@ def cliente_terminal():
                     else:
                         print("Error: Las contraseñas no coinciden.")
             if opcion == "2":
-                historial_compras = cliente.recv(1024).decode()
-                print(f"[SERVIDOR]: {historial_compras}")
+                while True:
+                    respuesta = cliente.recv(1024).decode()
+
+                    if "Historial de compras" in respuesta:
+                        print(f"[SERVIDOR]: {respuesta}")
+                        break  # Salir del bucle después de recibir la respuesta correcta
+                    elif "No hay compras registradas" in respuesta:
+                        print(f"[SERVIDOR]: {respuesta}")
+                        break  # Salir del bucle si no hay compras registradas
+                    else:
+                        # Si el cliente no fue encontrado, volver a intentar
+                        print(f"[SERVIDOR]: {respuesta}")
+                        intentar_otra_vez = input("¿Desea intentar nuevamente? (s/n): ").strip().lower()
+                        if intentar_otra_vez != 's':
+                            break
+
             if opcion == "3":
                 while True:
+                    # Solicitar el nombre del producto al usuario
                     producto = input("Ingrese el producto a comprar: ").strip().lower()
                     cliente.send(producto.encode())
+
+                    # Recibir respuesta del servidor sobre el producto
                     respuesta = cliente.recv(1024).decode()
+                    
                     if "Producto encontrado" in respuesta:
                         print(f"[SERVIDOR]: {respuesta}")
+
+                        # Solicitar la cantidad de producto a comprar
                         cantidad = input("Ingrese la cantidad a comprar: ").strip()
+                        
+                        # Enviar la cantidad al servidor
                         cliente.send(cantidad.encode())
+
+                        # Recibir respuesta del servidor sobre la cantidad y el stock disponible
                         respuesta = cliente.recv(1024).decode()
-                        if "Stock disponible" in respuesta:
+
+                        if "Compra Exitosa" in respuesta:
                             print(f"[SERVIDOR]: {respuesta}")
-                            print("Compra Exitosa")
-                            break
+                            break  # Salir del bucle ya que la compra fue exitosa
                         else:
+                            # Si el stock es insuficiente, se muestra el mensaje del servidor
                             print(f"[SERVIDOR]: {respuesta}")
-                    break
+                            # Preguntar si desea intentar nuevamente
+                            intentar_otra_vez = input("¿Desea intentar nuevamente? (s/n): ").strip().lower()
+                            if intentar_otra_vez != 's':
+                                break
+                    else:
+                        # Producto no encontrado, pedir al usuario intentar nuevamente
+                        print(f"[SERVIDOR]: Producto no encontrado.")
+                        intentar_otra_vez = input("¿Desea intentar con otro producto? (s/n): ").strip().lower()
+                        if intentar_otra_vez != 's':
+                            break
+
+                    
             if opcion == "4":
                 producto = input("Ingrese el producto a devolver: ").strip()
                 cliente.send(producto.encode())
+                cantidad = input("Ingrese la cantidad a devolver: ").strip()
+                cliente.send(cantidad.encode())
                 respuesta = cliente.recv(1024).decode()
                 print(f"[SERVIDOR]: {respuesta}")
             if opcion == "5":

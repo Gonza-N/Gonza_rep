@@ -1,46 +1,52 @@
-# ejecutivo.py - Código del Ejecutivo
 import socket
-import json
+import sys
 
-# Función del ejecutivo para conectarse al servidor
-def ejecutivo_terminal():
-    ejecutivo = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    ejecutivo.connect(("localhost", 9999))  # Conectar al servidor local
+def print_menu():
+    print("""
+    :status - Muestra la cantidad de clientes conectados y solicitudes de conexión.
+    :details - Muestra los clientes conectados y su última acción.
+    :history - Muestra el historial del cliente que está siendo atendido.
+    :operations - Muestra todas las operaciones realizadas por un cliente.
+    :connect - Conecta con el primer cliente en cola.
+    :disconnect - Termina la conexión actual con el cliente.
+    :exit - Salida del sistema.
+    """)
 
-    email = input("Ingrese su correo (ejecutivo): ")
-    password = input("Ingrese su contraseña: ")
-    
-    # Enviar credenciales al servidor
-    ejecutivo.send(json.dumps((email, password)).encode())
+def main():
+    host = 'localhost'
+    port = 12345
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((host, port))
 
-    # Esperar respuesta del servidor
-    try:
-        respuesta = ejecutivo.recv(1024).decode()
-        print(f"[Servidor]: {respuesta}")
+        # Autenticación
+        email = input("Ingrese su email: ")
+        password = input("Ingrese su contraseña: ")
+        s.send(f"login {email} {password}".encode())
 
-        if "Autenticación exitosa" in respuesta:
-            while True:
-                print("\nComandos disponibles:")
-                print("[1] Ver estado de clientes conectados")
-                print("[2] Desconectar cliente")
-                print("[7] Salir")
+        # Verificar respuesta del servidor
+        response = s.recv(1024).decode()
+        if response == "login_success":
+            print("Autenticación exitosa.\n")
+            print_menu()
+        else:
+            print("Error de autenticación.")
+            return
 
-                opcion = input("Ingrese un comando: ")
+        # Terminal interactiva
+        while True:
+            command = input("Ingrese un comando: ").strip().lower()
+            if command == ":exit":
+                s.send(command.encode())
+                break
+            elif command in [":status", ":details", ":history", ":operations", ":connect", ":disconnect"]:
+                s.send(command.encode())
+                response = s.recv(4096).decode()  # Asumiendo que se puede recibir una cantidad grande de datos.
+                print(response)
+            else:
+                print("Comando no reconocido.")
+                print_menu()
 
-                if opcion == "7":
-                    ejecutivo.send("7".encode())
-                    print("[Ejecutivo] Desconectando...")
-                    ejecutivo.close()
-                    break
-                else:
-                    ejecutivo.send(opcion.encode())
-                    respuesta = ejecutivo.recv(1024).decode()
-                    print(f"[Servidor]: {respuesta}")
+        print("Desconectado del servidor.")
 
-    except Exception as e:
-        print(f"[Ejecutivo] Error durante la comunicación: {e}")
-        ejecutivo.close()
-
-# Ejecutar el ejecutivo
 if __name__ == "__main__":
-    ejecutivo_terminal()
+    main()

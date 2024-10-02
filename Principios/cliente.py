@@ -11,7 +11,7 @@ def cliente_terminal():
 
         if "Correo encontrado" in respuesta:
             while True:
-                password = input("Ingrese su contraseña: ").strip()
+                password = input("Correo encontrado. Por favor ingrese su contraseña: ").strip()
                 cliente.send(password.encode())
                 respuesta = cliente.recv(1024).decode()
                 if "Autenticación" in respuesta:
@@ -54,8 +54,10 @@ def cliente_terminal():
                 historial_compras = cliente.recv(1024).decode()
                 print(f"[SERVIDOR]: {historial_compras}")
             if opcion == "3":
-                producto = input("Ingrese el producto a comprar: ").strip()
+                producto = input("Ingrese el producto a comprar:").strip()
+                cantidad = input("Ingrese la cantidad a comprar:").strip()
                 cliente.send(producto.encode())
+                cliente.send(cantidad.encode())
                 respuesta = cliente.recv(1024).decode()
                 print(f"[SERVIDOR]: {respuesta}")
             if opcion == "4":

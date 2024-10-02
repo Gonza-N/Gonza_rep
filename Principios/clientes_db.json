@@ -1,32 +1,34 @@
 {
-    "gonza": {
-      "password": "123",
-      "historial_compras": []
+  "gonza@gmail.com": {
+    "nombre": "Gonzalo",
+    "password": "1302",
+    "historial_compras": []
+  },
+  "ammi@gmail.com": {
+    "nombre": "Ammi",
+    "password": "5678",
+    "historial_compras": []
+  },
+  "productos": {
+    "producto1": {
+      "nombre": "Producto 1",
+      "stock": 20
     },
-    "ammi@gmail.com": {
-      "password": "5678",
-      "historial_compras": []
+    "producto2": {
+      "nombre": "Producto 2",
+      "stock": 15
     },
-    "productos": {
-      "producto1": {
-        "nombre": "Producto 1",
-        "stock": 20
-      },
-      "producto2": {
-        "nombre": "Producto 2",
-        "stock": 15
-      },
-      "producto3": {
-        "nombre": "Producto 3",
-        "stock": 10
-      },
-      "producto4": {
-        "nombre": "Producto 4",
-        "stock": 5
-      },
-      "producto5": {
-        "nombre": "Producto 5",
-        "stock": 25
-      }
+    "producto3": {
+      "nombre": "Producto 3",
+      "stock": 10
+    },
+    "producto4": {
+      "nombre": "Producto 4",
+      "stock": 5
+    },
+    "producto5": {
+      "nombre": "Producto 5",
+      "stock": 25
     }
   }
+}

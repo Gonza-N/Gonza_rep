@@ -8,14 +8,8 @@ def guardar_db():
         json.dump(clientes_db, f)
 
 def cargar_db():
-    try:
         with open('clientes_db.json', 'r') as f:
             return json.load(f)
-    except FileNotFoundError:
-        return {
-            "gonza": {"password": "1234", "historial_compras": []},
-            "ammi@gmail.com": {"password": "5678", "historial_compras": []}
-        }
 
 clientes_db = cargar_db()
 clientes_conectados = {}
@@ -30,6 +24,8 @@ def manejar_cliente(cliente_socket, direccion):
                 password = cliente_socket.recv(1024).decode().strip()
                 if clientes_db[email]["password"] == password:
                     cliente_socket.send("Autenticación exitosa.".encode())
+                    nombre = clientes_db[email]["nombre"]
+                    print(f"{nombre} se ha conectado.")
                     clientes_conectados[email] = cliente_socket
                     manejar_sesiones(cliente_socket, email)
                 else:
@@ -51,11 +47,21 @@ def manejar_sesiones(cliente_socket, email):
             historial_compras = clientes_db[email]["historial_compras"]
             cliente_socket.send(json.dumps(historial_compras).encode())
         elif solicitud == "3":
-            producto = cliente_socket.recv(1024).decode().strip()
-            clientes_db[email]["historial_compras"].append(producto)
-            guardar_db()
-            print(f"{email} compró {producto}.")
-            cliente_socket.send("Compra exitosa.".encode())
+            while True:
+                producto = cliente_socket.recv(1024).decode().strip()
+                if producto in clientes_db[productos]:
+                    cantidad = cliente_socket.recv(1024).decode().int()
+                    stock = clientes_db[producto][stock]
+                    while True:
+                        if cantidad <= stock:
+                            clientes_db[producto][stock] = stock - cantidad
+                            guardar_db()
+                            print(f"{email} compró {producto} [x{cantidad}].")
+                            cliente_socket.send("Compra exitosa.".encode())
+                        else:
+                            cliente_socket.send("Error: Stock insuficiente.".encode())
+                else:
+                    cliente_socket.send("Error: Producto no encontrado. Porfavor ingrese otro producto.".encode())
         elif solicitud == "4":
             producto = cliente_socket.recv(1024).decode().strip()
             if producto in clientes_db[email]["historial_compras"]:

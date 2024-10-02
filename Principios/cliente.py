@@ -8,7 +8,6 @@ def cliente_terminal():
         email = input("Ingrese su correo: ").strip().lower()
         cliente.send(email.encode())
         respuesta = cliente.recv(1024).decode()
-        print(f"[SERVIDOR]: {respuesta}")
 
         if "Correo encontrado" in respuesta:
             while True:
@@ -22,7 +21,7 @@ def cliente_terminal():
                     print(f"[SERVIDOR]: {respuesta}")
             break
         else:
-            print("Error: Correo no encontrado.")
+            print(f"{respuesta}")
             
             
     while "Autenticación exitosa" in respuesta:

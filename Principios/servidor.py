@@ -57,11 +57,11 @@ def manejar_sesiones(cliente_socket, email):
                 respuesta = "No hay compras registradas en el año 2024."
             
             cliente_socket.send(respuesta.encode())
-            break  # Salir del bucle después de procesar la solicitud
         elif solicitud == "3":
             while True:
                 # Recibir el nombre del producto que el cliente quiere comprar
                 producto = cliente_socket.recv(1024).decode().strip()
+                print(producto)
                 
                 # Verificar si el producto está en la base de datos
                 if producto in clientes_db["productos"]:

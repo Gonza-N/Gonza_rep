@@ -46,6 +46,7 @@ def cliente_terminal():
                     if nueva_contraseña == repetir_contraseña:
                         cliente.send(nueva_contraseña.encode())
                         respuesta = cliente.recv(1024).decode()
+                        print(f"[SERVIDOR]: {respuesta}")
                         break
                     else:
                         print("Error: Las contraseñas no coinciden.")

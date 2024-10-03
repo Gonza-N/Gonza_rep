@@ -14,7 +14,7 @@ def print_menu():
 
 def main():
     host = 'localhost'
-    port = 12345
+    port = 9999
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((host, port))
 

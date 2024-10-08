@@ -1,5 +1,20 @@
+import json
 import socket
+import threading
+from collections import deque
+import random
+import datetime
+def guardar_db():
+    with open('clientes_db.json', 'w') as f:
+        json.dump(clientes_db, f)
 
+def cargar_db():
+        with open('clientes_db.json', 'r') as f:
+            return json.load(f)
+
+clientes_db = cargar_db()
+clientes_conectados = {}
+cola_espera = deque()
 def cliente_terminal():
     cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     cliente.connect(("localhost", 9999))  # Conectar al servidor local
@@ -69,41 +84,33 @@ def cliente_terminal():
 
             if opcion == "3":
                 while True:
+                    for producto, info in clientes_db['productos'].items():
+                        print(f"{info['nombre']}: stock {info['stock']}")
                     # Solicitar el nombre del producto al usuario
                     producto = input("Ingrese el producto a comprar: ").strip().lower()
                     cliente.send(producto.encode())
-
                     # Recibir respuesta del servidor sobre el producto
-                    respuesta = cliente.recv(1024).decode()
-                    
+                    respuesta = cliente.recv(1024).decode()  
                     if "Producto encontrado" in respuesta:
                         print(f"[SERVIDOR]: {respuesta}")
-
-                        # Solicitar la cantidad de producto a comprar
-                        cantidad = input("Ingrese la cantidad a comprar: ").strip()
-                        
-                        # Enviar la cantidad al servidor
-                        cliente.send(cantidad.encode())
-
-                        # Recibir respuesta del servidor sobre la cantidad y el stock disponible
-                        respuesta = cliente.recv(1024).decode()
-
-                        if "Compra Exitosa" in respuesta:
-                            print(f"[SERVIDOR]: {respuesta}")
-                            break  # Salir del bucle ya que la compra fue exitosa
-                        else:
-                            # Si el stock es insuficiente, se muestra el mensaje del servidor
-                            print(f"[SERVIDOR]: {respuesta}")
-                            # Preguntar si desea intentar nuevamente
-                            intentar_otra_vez = input("¿Desea intentar nuevamente? (s/n): ").strip().lower()
-                            if intentar_otra_vez != 's':
-                                break
+                        while True:
+                            # Solicitar la cantidad de producto a comprar
+                            cantidad = input("Ingrese la cantidad a comprar: ").strip()
+                            # Enviar la cantidad al servidor
+                            cliente.send(cantidad.encode())
+                            # Recibir respuesta del servidor sobre la cantidad y el stock disponible
+                            respuesta = cliente.recv(1024).decode()
+                            if "Compra Exitosa" in respuesta:
+                                print(f"[SERVIDOR]: {respuesta}")
+                                break  # Salir del bucle ya que la compra fue exitosa
+                            else:
+                                # Si el stock es insuficiente, se muestra el mensaje del servidor
+                                print(f"[SERVIDOR]: {respuesta}")
+                        break
                     else:
                         # Producto no encontrado, pedir al usuario intentar nuevamente
                         print(f"[SERVIDOR]: Producto no encontrado.")
-                        intentar_otra_vez = input("¿Desea intentar con otro producto? (s/n): ").strip().lower()
-                        if intentar_otra_vez != 's':
-                            break
+                        
 
                     
             if opcion == "4":
@@ -125,9 +132,11 @@ def cliente_terminal():
                 print("[CLIENTE] Desconectando...")
                 cliente.close()
                 break
-
-     
-            continuar = input("¿Desea realizar otra operación? (1 = Sí, otro = No): ")
+            continuar = input("¿Desea realizar otra operación? (Sí, No): ")
+            cliente.send(continuar.encode())
+            if continuar != 'si':
+                print("[CLIENTE] Desconectando...")
+                cliente.close()
         break
 if __name__ == "__main__":
     cliente_terminal()

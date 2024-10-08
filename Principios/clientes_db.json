@@ -1,34 +1,93 @@
 {
-  "gonza@gmail.com": {
-    "nombre": "Gonzalo",
-    "password": "1302",
-    "historial_compras": []
-  },
-  "ammi@gmail.com": {
-    "nombre": "Ammi",
-    "password": "5678",
-    "historial_compras": []
+  "usuarios": {
+      "clientes": {
+          "gonza@gmail.com": {
+              "nombre": "Gonzalo",
+              "password": "12345",
+              "historial_compras": []
+          },
+          "victor@gmail.com": {
+              "nombre": "Victor",
+              "password": "88",
+              "historial_compras": []
+          },
+          "cliente3@gmail.com": {
+              "nombre": "Cliente Tres",
+              "password": "pass3",
+              "historial_compras": []
+          },
+          "cliente4@gmail.com": {
+              "nombre": "Cliente Cuatro",
+              "password": "pass4",
+              "historial_compras": []
+          },
+          "cliente5@gmail.com": {
+              "nombre": "Cliente Cinco",
+              "password": "pass5",
+              "historial_compras": []
+          },
+          "cliente6@gmail.com": {
+              "nombre": "Cliente Seis",
+              "password": "pass6",
+              "historial_compras": []
+          },
+          "cliente7@gmail.com": {
+              "nombre": "Cliente Siete",
+              "password": "pass7",
+              "historial_compras": []
+          }
+      },
+      "ejecutivos": {
+          "ejecutivo1@empresa.com": {
+              "nombre": "Ejecutivo Uno",
+              "password": "exec1"
+          },
+          "ejecutivo2@empresa.com": {
+              "nombre": "Ejecutivo Dos",
+              "password": "exec2"
+          },
+          "ejecutivo3@empresa.com": {
+              "nombre": "Ejecutivo Tres",
+              "password": "exec3"
+          },
+          "ejecutivo4@empresa.com": {
+              "nombre": "Ejecutivo Cuatro",
+              "password": "exec4"
+          },
+          "ejecutivo5@empresa.com": {
+              "nombre": "Ejecutivo Cinco",
+              "password": "exec5"
+          },
+          "ejecutivo6@empresa.com": {
+              "nombre": "Ejecutivo Seis",
+              "password": "exec6"
+          },
+          "ejecutivo7@empresa.com": {
+              "nombre": "Ejecutivo Siete",
+              "password": "exec7"
+          }
+      }
   },
   "productos": {
-    "producto1": {
-      "nombre": "Producto 1",
-      "stock": 20
-    },
-    "producto2": {
-      "nombre": "Producto 2",
-      "stock": 15
-    },
-    "producto3": {
-      "nombre": "Producto 3",
-      "stock": 10
-    },
-    "producto4": {
-      "nombre": "Producto 4",
-      "stock": 5
-    },
-    "producto5": {
-      "nombre": "Producto 5",
-      "stock": 25
-    }
+      "producto 1": {
+          "nombre": "producto 1",
+          "stock": 100
+      },
+      "producto 2": {
+          "nombre": "producto 2",
+          "stock": 100
+      },
+      "producto 3": {
+          "nombre": "producto 3",
+          "stock": 100
+      },
+      "producto 4": {
+          "nombre": "producto 4",
+          "stock": 100
+      },
+      "producto 5": {
+          "nombre": "producto 5",
+          "stock": 100
+      }
   }
 }

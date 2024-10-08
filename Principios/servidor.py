@@ -20,13 +20,13 @@ cola_espera = deque()
 def manejar_cliente(cliente_socket, direccion):
     while True:
         email = cliente_socket.recv(1024).decode().strip()
-        if email in clientes_db:
+        if email in clientes_db['usuarios']['clientes']:
             cliente_socket.send("Correo encontrado. Por favor ingrese su contraseña:".encode())
             while True:
                 password = cliente_socket.recv(1024).decode().strip()
-                if clientes_db[email]["password"] == password:
+                if clientes_db['usuarios']['clientes'][email]["password"] == password:
                     cliente_socket.send("Autenticación exitosa.".encode())
-                    nombre = clientes_db[email]["nombre"]
+                    nombre = clientes_db['usuarios']['clientes']["gonza@gmail.com"]["nombre"]
                     print(f"{nombre} se ha conectado.")
                     clientes_conectados[email] = cliente_socket
                     manejar_sesiones(cliente_socket, email)
@@ -41,18 +41,18 @@ def manejar_sesiones(cliente_socket, email):
         solicitud = cliente_socket.recv(1024).decode().strip()
         if solicitud == "1":
             nueva_contraseña = cliente_socket.recv(1024).decode().strip()
-            clientes_db[email]["password"] = nueva_contraseña
+            clientes_db['usuarios']['clientes'][email]["password"] = nueva_contraseña
             guardar_db()
             print(f"Contraseña de {email} cambiada.")
             cliente_socket.send("Contraseña cambiada exitosamente.".encode())
         elif solicitud == "2":
             historial_2024 = []
-            for compra in clientes_db[email]["historial_compras"]:
+            for compra in clientes_db['usuarios']['clientes'][email]["historial_compras"]:
                 if compra["fecha"].startswith("2024"):
                     historial_2024.append(compra)
 
             if historial_2024:
-                respuesta = f"Historial de compras de {clientes_db[email]['nombre']} en 2024: {historial_2024}"
+                respuesta = f"Historial de compras de {clientes_db['usuarios']['clientes'][email]['nombre']} en 2024: {historial_2024}"
             else:
                 respuesta = "No hay compras registradas en el año 2024."
             
@@ -65,35 +65,35 @@ def manejar_sesiones(cliente_socket, email):
                 
                 # Verificar si el producto está en la base de datos
                 if producto in clientes_db["productos"]:
-                    cliente_socket.send("Producto encontrado. Ingrese la cantidad a comprar:".encode())
-                    
-                    # Recibir la cantidad solicitada
-                    cantidad = int(cliente_socket.recv(1024).decode().strip())
                     stock = clientes_db["productos"][producto]["stock"]
-
-                    # Verificar si la cantidad solicitada está disponible en el stock
-                    if cantidad <= stock:
-                        # Actualizar stock y añadir al historial de compras
-                        clientes_db["productos"][producto]["stock"] = stock - cantidad
-                        fecha_aleatoria = datetime.date(2020, 1, 1) + datetime.timedelta(days=random.randint(0, (datetime.date(2024, 1, 1) - datetime.date(2020, 1, 1)).days))
+                    cliente_socket.send(f"Producto encontrado. stock disponible {stock} Ingrese la cantidad a comprar:".encode())
+                    while True:
+                        # Recibir la cantidad solicitada
+                        cantidad = int(cliente_socket.recv(1024).decode().strip())
+                        if cantidad <= stock:
+                            # Actualizar stock y añadir al historial de compras
+                            clientes_db["productos"][producto]["stock"] = stock - cantidad
+                            fecha_aleatoria = datetime.date(2020, 1, 1) + datetime.timedelta(days=random.randint(0, (datetime.date(2024, 1, 1) - datetime.date(2020, 1, 1)).days))
+                            
+                            nuevo_historial = {
+                                "fecha": str(fecha_aleatoria),
+                                "producto": producto,
+                                "cantidad": cantidad
+                            }
+                            
+                            clientes_db['usuarios']['clientes'][email]["historial_compras"].append(nuevo_historial)
+                            guardar_db()
+                            
+                            # Confirmación de la compra
+                            cliente_socket.send("Compra Exitosa. Gracias por su compra.".encode())
+                            nombre = clientes_db['usuarios']['clientes'][email]["nombre"]
+                            print(f"{nombre} compró {producto} [x{cantidad}].")
+                            break
+                        else:
+                            # Notificar al cliente que el stock es insuficiente
+                            cliente_socket.send(f"Stock insuficiente. Stock actual: {stock}.".encode())
                         
-                        nuevo_historial = {
-                            "fecha": str(fecha_aleatoria),
-                            "producto": producto,
-                            "cantidad": cantidad
-                        }
-                        
-                        clientes_db[email]["historial_compras"].append(nuevo_historial)
-                        guardar_db()
-                        
-                        # Confirmación de la compra
-                        cliente_socket.send("Compra Exitosa. Gracias por su compra.".encode())
-                        print(f"{email} compró {producto} [x{cantidad}].")
-                    else:
-                        # Notificar al cliente que el stock es insuficiente
-                        cliente_socket.send(f"Stock insuficiente. Stock actual: {stock}.".encode())
-                    
-                    # Salir del bucle después de procesar la compra o notificar stock insuficiente
+                        # Salir del bucle después de procesar la compra o notificar stock insuficiente
                     break
                 else:
                     # Notificar que el producto no se encontró y continuar el bucle
@@ -104,14 +104,14 @@ def manejar_sesiones(cliente_socket, email):
             # Recibimos el producto a eliminar y la cantidad del cliente
             producto_a_eliminar = cliente_socket.recv(1024).decode().strip()
             cantidad_a_eliminar = int(cliente_socket.recv(1024).decode().strip())
-            email = "gonza"  # Cambia esto según cómo identifiques al cliente
+              # Cambia esto según cómo identifiques al cliente
 
             # Verificamos y eliminamos la compra del historial
             encontrado = False  # Definimos la variable para controlar si se encontró la compra
             
-            for compra in clientes_db[email]["historial_compras"]:
+            for compra in clientes_db['usuarios']['clientes'][email]["historial_compras"]:
                 if compra["producto"] == producto_a_eliminar and compra["cantidad"] == cantidad_a_eliminar:
-                    clientes_db[email]["historial_compras"].remove(compra)
+                    clientes_db['usuarios']['clientes'][email]["historial_compras"].remove(compra)
                     encontrado = True
                     break  # Eliminamos solo la primera coincidencia y salimos del bucle
 
@@ -125,8 +125,8 @@ def manejar_sesiones(cliente_socket, email):
                 cliente_socket.send("No se encontró el producto para devolución.".encode())
         elif solicitud == "5":
             producto = cliente_socket.recv(1024).decode().strip()
-            if producto in clientes_db[email]["historial_compras"]:
-                clientes_db[email]["historial_compras"].remove(producto)
+            if producto in clientes_db['usuarios']['clientes'][email]["historial_compras"]:
+                clientes_db['usuarios']['clientes'][email]["historial_compras"].remove(producto)
                 guardar_db()
                 print(f"{email} confirmó envío de {producto}.")
                 cliente_socket.send("Envío confirmado.".encode())
@@ -145,8 +145,12 @@ def manejar_sesiones(cliente_socket, email):
             print(f"{email} se ha desconectado.")
             cliente_socket.send("Desconectado.".encode())
             break
+        conitnuar = cliente_socket.recv(1024).decode().strip()
+        if continuar != "si":
+            print(f"{email} se ha desconectado.")
         else:
             cliente_socket.send("Opción no válida.".encode())
+    
 
 def iniciar_servidor():
     servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

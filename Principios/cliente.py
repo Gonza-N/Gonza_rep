@@ -42,6 +42,7 @@ def cliente_terminal():
     while "Autenticación exitosa" in respuesta:
         continuar = '1'
         while continuar == '1':
+            clientes_db = cargar_db()
             print("\nOpciones:")
             print("[1] Cambiar contraseña")
             print("[2] Ver historial de pedidos")
@@ -114,6 +115,11 @@ def cliente_terminal():
 
                     
             if opcion == "4":
+                if clientes_db['usuarios']['clientes'][email]['historial_compras']:  # Verificar si el historial no está vacío
+                    for compra in clientes_db['usuarios']['clientes'][email]['historial_compras']:
+                        print(f"  Fecha: {compra['fecha']}, Producto: {compra['producto']}, Cantidad: {compra['cantidad']}")
+                else:
+                    print("  No hay historial de compras.")
                 producto = input("Ingrese el producto a devolver: ").strip()
                 cliente.send(producto.encode())
                 cantidad = input("Ingrese la cantidad a devolver: ").strip()
@@ -126,17 +132,24 @@ def cliente_terminal():
                 respuesta = cliente.recv(1024).decode()
                 print(f"[SERVIDOR]: {respuesta}")
             if opcion == "6":
-                respuesta = cliente.recv(1024).decode()
-                print(f"[SERVIDOR]: {respuesta}")
+                msg = cliente.recv(1024).decode()
+                print(f"[SERVIDOR]: {msg}")
+                while True:
+                    mensaje = cliente.recv(1024).decode()  # recibir mensaje del servidor
+                    if mensaje == "Ejecutivo desconectado":
+                        break
+                    print(f"{mensaje}")
+                    respuesta = input(">:").strip()
+                    cliente.send(respuesta.encode())  # enviar respuesta al servidor
+                
             if opcion == "7":
                 print("[CLIENTE] Desconectando...")
                 cliente.close()
-                break
-            continuar = input("¿Desea realizar otra operación? (Sí, No): ")
-            cliente.send(continuar.encode())
-            if continuar != 'si':
-                print("[CLIENTE] Desconectando...")
-                cliente.close()
+                break 
+            continuar = input("¿Desea realizar otra acción? [1] Sí [otro] No: ").strip()
+        if continuar != '1':
+            print("[CLIENTE] Desconectando...")
+            cliente.close() 
         break
 if __name__ == "__main__":
     cliente_terminal()

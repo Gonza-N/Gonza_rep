@@ -26,17 +26,31 @@ def manejar_cliente(cliente_socket, direccion):
                 password = cliente_socket.recv(1024).decode().strip()
                 if clientes_db['usuarios']['clientes'][email]["password"] == password:
                     cliente_socket.send("Autenticación exitosa.".encode())
-                    nombre = clientes_db['usuarios']['clientes']["gonza@gmail.com"]["nombre"]
+                    nombre = clientes_db['usuarios']['clientes'][email]["nombre"]
                     print(f"{nombre} se ha conectado.")
                     clientes_conectados[email] = cliente_socket
                     manejar_sesiones(cliente_socket, email)
                 else:
                     cliente_socket.send("Error: Contraseña incorrecta.".encode())
-        if not email in clientes_db:
+        elif email in clientes_db['usuarios']['ejecutivos']:
+            cliente_socket.send("Correo encontrado. Por favor ingrese su contraseña:".encode())
+            while True:
+                password = cliente_socket.recv(1024).decode().strip()
+                if clientes_db['usuarios']['ejecutivos'][email]["password"] == password:
+                    cliente_socket.send("Autenticación exitosa.".encode())
+                    nombre = clientes_db['usuarios']['ejecutivos'][email]["nombre"]
+                    print(f"{nombre} se ha conectado.")
+                    clientes_conectados[email] = cliente_socket
+                    manejar_ejectivo(cliente_socket, email)
+                else:
+                    cliente_socket.send("Error: Contraseña incorrecta.".encode())
+    
+        else:
             cliente_socket.send("Error: Correo no encontrado.".encode())
 
 
 def manejar_sesiones(cliente_socket, email):
+    global sas
     while True:
         solicitud = cliente_socket.recv(1024).decode().strip()
         if solicitud == "1":
@@ -47,12 +61,18 @@ def manejar_sesiones(cliente_socket, email):
             cliente_socket.send("Contraseña cambiada exitosamente.".encode())
         elif solicitud == "2":
             historial_2024 = []
+            # Suponiendo que 'email' contiene el correo del cliente que estamos consultando
             for compra in clientes_db['usuarios']['clientes'][email]["historial_compras"]:
                 if compra["fecha"].startswith("2024"):
                     historial_2024.append(compra)
 
             if historial_2024:
-                respuesta = f"Historial de compras de {clientes_db['usuarios']['clientes'][email]['nombre']} en 2024: {historial_2024}"
+                # Crear una respuesta formateada con los detalles de cada compra incluyendo el estado
+                detalles_compras = []
+                for compra in historial_2024:
+                    detalle = f"Fecha: {compra['fecha']}, Producto: {compra['producto']}, Cantidad: {compra['cantidad']}, Estado: {compra['estado']}"
+                    detalles_compras.append(detalle)
+                respuesta = f"Historial de compras de {clientes_db['usuarios']['clientes'][email]['nombre']} en 2024:\n" + "\n".join(detalles_compras)
             else:
                 respuesta = "No hay compras registradas en el año 2024."
             
@@ -73,12 +93,13 @@ def manejar_sesiones(cliente_socket, email):
                         if cantidad <= stock:
                             # Actualizar stock y añadir al historial de compras
                             clientes_db["productos"][producto]["stock"] = stock - cantidad
-                            fecha_aleatoria = datetime.date(2020, 1, 1) + datetime.timedelta(days=random.randint(0, (datetime.date(2024, 1, 1) - datetime.date(2020, 1, 1)).days))
-                            
+                            #fecha_aleatoria = datetime.date(2020, 1, 1) + datetime.timedelta(days=random.randint(0, (datetime.date(2024, 1, 1) - datetime.date(2020, 1, 1)).days))
+                            fecha_aleatoria = datetime.datetime.now() 
                             nuevo_historial = {
                                 "fecha": str(fecha_aleatoria),
                                 "producto": producto,
-                                "cantidad": cantidad
+                                "cantidad": cantidad,
+                                "estado": "pagado"
                             }
                             
                             clientes_db['usuarios']['clientes'][email]["historial_compras"].append(nuevo_historial)
@@ -132,25 +153,65 @@ def manejar_sesiones(cliente_socket, email):
                 cliente_socket.send("Envío confirmado.".encode())
             else:
                 cliente_socket.send("Error: Producto no encontrado.".encode())
+
         elif solicitud == "6":
-            cola_espera.append(email)
+            cola_espera.append([email,cliente_socket])
             print(f"{email} en cola de espera.")
             cliente_socket.send("En cola de espera.".encode())
-            if len(cola_espera) == 1:
-                ejecutivo = cola_espera.popleft()
-                print(f"Conectando a {ejecutivo} con un ejecutivo.")
-                ejecutivo_socket = clientes_conectados[ejecutivo]
-                ejecutivo_socket.send("Conectado con un ejecutivo.".encode())
+            sas=0
+            while True:
+                #msg = cliente_socket.recv(1024).decode()
+                #cliente_socket.send(msg.encode())
+                if sas==1:
+                    break
+
         elif solicitud == "7":
             print(f"{email} se ha desconectado.")
             cliente_socket.send("Desconectado.".encode())
             break
-        conitnuar = cliente_socket.recv(1024).decode().strip()
-        if continuar != "si":
-            print(f"{email} se ha desconectado.")
         else:
             cliente_socket.send("Opción no válida.".encode())
-    
+
+def manejar_ejectivo(ejecutivo_socket, email):
+    global sas
+    while True:
+        solicitud = ejecutivo_socket.recv(1024).decode().strip()
+        if solicitud == "1":
+            clientes_conectados[email].send(f"Hola {email}".encode())
+            ejecutivo_socket.send(f"Mensaje enviado a {email}".encode())
+        #elif solicitud == "2":
+
+        #elif solicitud == "3":
+
+        #elif solicitud == "4":   
+
+        elif solicitud == "5":
+            if len(cola_espera) > 0:
+                cliente_socket = cola_espera[0][1]
+
+                cola_espera.popleft()
+                while True:
+                    print("aaaaaaa")
+                    mensaje_de_ejecutivo = ejecutivo_socket.recv(1024).decode()  # recibir del ejecutivo
+                    if mensaje_de_ejecutivo == "Exit":
+                        cliente_socket.send("Ejecutivo desconectado".encode())
+                        ejecutivo_socket.send("Cliente desconectado".encode())
+                        sas=1
+
+                        break
+                    cliente_socket.send(mensaje_de_ejecutivo.encode())  # enviar al cliente
+                    respuesta_de_cliente = cliente_socket.recv(1024).decode()  # recibir respuesta del cliente
+                    ejecutivo_socket.send(respuesta_de_cliente.encode())  # enviar respuesta al ejecutivo
+            else:
+                ejecutivo_socket.send("No hay clientes en cola.".encode())
+        elif solicitud == "6":
+            ejecutivo_socket.send("Desconectado.".encode())
+            break
+        elif solicitud == "7":
+            ejecutivo_socket.send("Desconectado.".encode())
+            break
+
+        break
 
 def iniciar_servidor():
     servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -160,6 +221,7 @@ def iniciar_servidor():
     while True:
         cliente_socket, direccion = servidor.accept()
         threading.Thread(target=manejar_cliente, args=(cliente_socket, direccion)).start()
+
 
 if __name__ == "__main__":
     iniciar_servidor()

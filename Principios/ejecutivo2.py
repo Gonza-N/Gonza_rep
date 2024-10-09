@@ -78,7 +78,16 @@ def ejecutivo_terminal():
                     while True:
                         mensaje = input("Ejecutivo, ingresa tu mensaje: ").strip()
                         ejecutivo.send(mensaje.encode())  # enviar al servidor
-                        respuesta = ejecutivo.recv(1024).decode()  # recibir respuesta del servidor
+                        if mensaje == "history":
+                            respuesta = ejecutivo.recv(1024).decode()
+                            print(f"[SERVIDOR]: {respuesta}")
+                        elif mensaje == "operations":
+                            print("Historial de operaciones del cliente:")
+                            respuesta = ejecutivo.recv(1024).decode()
+                        else:
+                            respuesta = ejecutivo.recv(1024).decode()  # recibir respuesta del servidor
+                        
+                        
                         if respuesta == "Cliente desconectado":
                             break
                         print(f"[Cliente] {respuesta}")

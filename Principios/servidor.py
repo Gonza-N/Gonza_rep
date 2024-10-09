@@ -274,19 +274,18 @@ def manejar_ejecutivo(ejecutivo_socket, email):
                 cola_espera.popleft()
                 ejecutivo_socket.send(f"Conectado con {cliente_email}.".encode())
                 while True:
-
                     mensaje_de_ejecutivo = ejecutivo_socket.recv(1024).decode()  # recibir del ejecutivo
                     if mensaje_de_ejecutivo == "disconnect":
                         cliente_socket.send("Ejecutivo desconectado".encode())
                         ejecutivo_socket.send("Cliente desconectado".encode())
                         sas=1
                         break
-                    if mensaje_de_ejecutivo == "operations":
+                    elif mensaje_de_ejecutivo == "operations":
                         cliente = clientes_db["usuarios"]["clientes"][email_c]["nombre"]
                         historial_operaciones = clientes_db["usuarios"]["clientes"][email_c]["acciones"]
                         mensaje = f"Historial de operaciones de {cliente}: {historial_operaciones}"
                         cliente_socket.send(mensaje.encode())
-                    if mensaje_de_ejecutivo == "history":
+                    elif mensaje_de_ejecutivo == "history":
                         cliente = clientes_db["usuarios"]["clientes"][email_c]["nombre"]
                         historial_compras = clientes_db["usuarios"]["clientes"][email_c]["historial_compras"]
                         mensaje = f"Historial de compras de {cliente}: {historial_compras}"

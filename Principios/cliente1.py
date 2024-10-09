@@ -139,11 +139,19 @@ def cliente_terminal():
                 print(f"[SERVIDOR]: {msg}")
                 while True:
                     mensaje = cliente.recv(1024).decode()  # recibir mensaje del servidor
-                    if mensaje == "Ejecutivo desconectado":
+                    if mensaje == "history":
+                        mensaje = cliente.recv(1024).decode()
+                        print(f"[SERVIDOR]: {mensaje}")
+                    elif mensaje == "Ejecutivo desconectado":
                         break
-                    print(f"[Ejecutivo] {mensaje}")
-                    respuesta = input(">:").strip()
-                    cliente.send(respuesta.encode())  # enviar respuesta al servidor
+                    elif "historial de operaciones" in mensaje:
+                        print("Historial de operaciones del cliente:")
+                        respuesta = cliente.recv(1024).decode()
+                        print(f"[SERVIDOR]: {respuesta}")
+                    else:
+                        print(f"[Ejecutivo] {mensaje}")
+                        respuesta = input(">:").strip()
+                        cliente.send(respuesta.encode())  # enviar respuesta al servidor
                 
             if opcion == "7":               
                 print("[CLIENTE] Desconectando...")
@@ -157,4 +165,3 @@ def cliente_terminal():
         break
 if __name__ == "__main__":
     cliente_terminal()
-

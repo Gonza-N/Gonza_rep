@@ -53,6 +53,9 @@ def cliente_terminal():
             print("[7] Salir")
 
             opcion = input("Ingrese una opción: ").strip()
+            if opcion not in ['1', '2', '3', '4', '5', '6', '7']:
+                print("Opción no válida. Ingrese una opción válida.")
+                continue
             cliente.send(opcion.encode())
 
             if opcion == "1":
@@ -138,7 +141,7 @@ def cliente_terminal():
                     mensaje = cliente.recv(1024).decode()  # recibir mensaje del servidor
                     if mensaje == "Ejecutivo desconectado":
                         break
-                    print(f"{mensaje}")
+                    print(f"[Ejecutivo] {mensaje}")
                     respuesta = input(">:").strip()
                     cliente.send(respuesta.encode())  # enviar respuesta al servidor
                 

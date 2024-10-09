@@ -70,23 +70,31 @@ def ejecutivo_terminal():
                 # Mostrar todas las operaciones realizadas por el cliente
                 mostrar_operaciones(cliente_actual)
             elif opcion == '5':
-    
-                while True:
-                    mensaje = input("Ejecutivo, ingresa tu mensaje: ").strip()
-                    ejecutivo.send(mensaje.encode())  # enviar al servidor
-                    respuesta = ejecutivo.recv(1024).decode()  # recibir respuesta del servidor
-                    if respuesta == "Cliente desconectado":
-                        break
-                    print(f"{respuesta}")
+                mensaje = ejecutivo.recv(1024).decode()
+                if "No hay clientes" in mensaje:
+                    print("[SERVIDOR]: No hay clientes en cola.")
+                else:
+                    while True:
+                        mensaje = input("Ejecutivo, ingresa tu mensaje: ").strip()
+                        ejecutivo.send(mensaje.encode())  # enviar al servidor
+                        respuesta = ejecutivo.recv(1024).decode()  # recibir respuesta del servidor
+                        if respuesta == "Cliente desconectado":
+                            break
+                        print(f"[Cliente] {respuesta}")
             elif opcion == '6':
                 # Desconectar la conexión actual con un cliente
                 desconectar_cliente(cliente_actual)
             elif opcion == '7':
                 # Salir del sistema
                 print("Desconectando del servidor...")
-                continuar = '0'
+                continuar = '0'            
             else:
                 print("Opción no válida. Por favor, intente de nuevo.")
+            continuar = input("¿Desea realizar otra acción? [1] Sí [otro] No: ").strip()
+            if continuar != '1':
+                print("[CLIENTE] Desconectando...")
+                ejecutivo.close()         
+                break
 
 
 if __name__ == "__main__":

@@ -51,6 +51,7 @@ def manejar_cliente(cliente_socket, direccion):
 
 def manejar_sesiones(cliente_socket, email):
     global sas
+    global cola_espera
     while True:
         solicitud = cliente_socket.recv(1024).decode().strip()
         if solicitud == "1":
@@ -67,6 +68,8 @@ def manejar_sesiones(cliente_socket, email):
                     historial_2024.append(compra)
 
             if historial_2024:
+                cliente = clientes_db['usuarios']['clientes'][email]["nombre"]
+                print(f"{cliente} consultó su historial de compras.")
                 # Crear una respuesta formateada con los detalles de cada compra incluyendo el estado
                 detalles_compras = []
                 for compra in historial_2024:
@@ -81,7 +84,6 @@ def manejar_sesiones(cliente_socket, email):
             while True:
                 # Recibir el nombre del producto que el cliente quiere comprar
                 producto = cliente_socket.recv(1024).decode().strip()
-                print(producto)
                 
                 # Verificar si el producto está en la base de datos
                 if producto in clientes_db["productos"]:
@@ -156,12 +158,11 @@ def manejar_sesiones(cliente_socket, email):
 
         elif solicitud == "6":
             cola_espera.append([email,cliente_socket])
-            print(f"{email} en cola de espera.")
+            cliente = clientes_db["usuarios"]["clientes"][email]["nombre"]
+            print(f"{cliente} en cola de espera.")
             cliente_socket.send("En cola de espera.".encode())
             sas=0
             while True:
-                #msg = cliente_socket.recv(1024).decode()
-                #cliente_socket.send(msg.encode())
                 if sas==1:
                     break
 
@@ -174,6 +175,7 @@ def manejar_sesiones(cliente_socket, email):
 
 def manejar_ejectivo(ejecutivo_socket, email):
     global sas
+    global cola_espera
     while True:
         solicitud = ejecutivo_socket.recv(1024).decode().strip()
         if solicitud == "1":
@@ -186,32 +188,37 @@ def manejar_ejectivo(ejecutivo_socket, email):
         #elif solicitud == "4":   
 
         elif solicitud == "5":
-            if len(cola_espera) > 0:
-                cliente_socket = cola_espera[0][1]
 
-                cola_espera.popleft()
+            if len(cola_espera) > 0:
+                ejecutivo = clientes_db["usuarios"]["ejecutivos"][email]["nombre"]
+                cliente_email = clientes_db["usuarios"]["clientes"][cola_espera[0][0]]["nombre"]
+                print(f"{ejecutivo} conectado con {cliente_email}.")
+                cliente_socket = cola_espera[0][1]
+                if len(cola_espera) > 1:
+                    cola_espera = cola_espera[1:]
+                else:
+                    cola_espera = deque()
+                ejecutivo_socket.send(f"Conectado con {cliente_email}.".encode())
                 while True:
-                    print("aaaaaaa")
+
                     mensaje_de_ejecutivo = ejecutivo_socket.recv(1024).decode()  # recibir del ejecutivo
-                    if mensaje_de_ejecutivo == "Exit":
+                    if mensaje_de_ejecutivo == "disconnect":
                         cliente_socket.send("Ejecutivo desconectado".encode())
                         ejecutivo_socket.send("Cliente desconectado".encode())
                         sas=1
-
                         break
+
                     cliente_socket.send(mensaje_de_ejecutivo.encode())  # enviar al cliente
                     respuesta_de_cliente = cliente_socket.recv(1024).decode()  # recibir respuesta del cliente
                     ejecutivo_socket.send(respuesta_de_cliente.encode())  # enviar respuesta al ejecutivo
             else:
                 ejecutivo_socket.send("No hay clientes en cola.".encode())
-        elif solicitud == "6":
-            ejecutivo_socket.send("Desconectado.".encode())
-            break
+        
         elif solicitud == "7":
             ejecutivo_socket.send("Desconectado.".encode())
+            ejecutivo.close()
             break
-
-        break
+    
 
 def iniciar_servidor():
     servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

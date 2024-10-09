@@ -34,7 +34,7 @@ def manejar_cliente(cliente_socket, direccion):
                     clientes_conectados[email] = cliente_socket
                     accion = "Conexión"
                     clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
-                   
+                    clientes_db['usuarios']['clientes'][email]["estado"] = "conectado"                  
                     manejar_sesiones(cliente_socket, email)
                 else:
                     cliente_socket.send("Error: Contraseña incorrecta.".encode())
@@ -200,6 +200,7 @@ def manejar_sesiones(cliente_socket, email):
             print(f"[SERVIDOR] {nombre} se ha desconectado.")
             accion = "Desconexión"
             clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
+            clientes_db['usuarios']['clientes'][email]["estado"] = "desconectado"
             guardar_db()
             break
         else:
@@ -211,17 +212,61 @@ def manejar_ejecutivo(ejecutivo_socket, email):
     while True:
         solicitud = ejecutivo_socket.recv(1024).decode().strip()
         if solicitud == "1":
-            clientes_conectados[email].send(f"Hola {email}".encode())
-            ejecutivo_socket.send(f"Mensaje enviado a {email}".encode())
-        #elif solicitud == "2":
+            clientes_conectados = []
+            clientes_derivados = []
+            for cliente_id, cliente_info in clientes_db["usuarios"]["clientes"].items():
+                if cliente_info["estado"] == "conectado":
+                    clientes_conectados.append(cliente_info['nombre'])  # Añadir cliente a la lista
+                if cliente_info["acciones"] and cliente_info["acciones"][-1] == "Derivado a ejecutivo":
+                    clientes_derivados.append(cliente_info['nombre'])
 
-        #elif solicitud == "3":
+            # Convertir la lista en un string para enviar al ejecutivo
+            if clientes_conectados:
+                mensaje = f"Hay {len(clientes_conectados)} clientes conectados:"
+                ejecutivo_socket.send(mensaje.encode())
+                if clientes_derivados:
+                    mensaje = f"Clientes derivados: {', '.join(clientes_derivados)}"
+                    ejecutivo_socket.send(mensaje.encode())
+                else:
+                    mensaje = "No hay clientes derivados."
+                    ejecutivo_socket.send(mensaje.encode())
+            else:
+                mensaje = "No hay clientes conectados."
+                ejecutivo_socket.send(mensaje.encode())
+        elif solicitud == "2":
+            clientes_conectados = []
+            for cliente_id, cliente_info in clientes_db["usuarios"]["clientes"].items():
+                if cliente_info["estado"] == "conectado":
+                    # Agregar una tupla (nombre, última acción) a la lista
+                    ultima_accion = cliente_info["acciones"][-1]  # Última acción del cliente
+                    clientes_conectados.append((cliente_info['nombre'], ultima_accion))
+            
+            if clientes_conectados:
+                mensaje = f"Clientes conectados y su última acción: {clientes_conectados}"
+                ejecutivo_socket.send(mensaje.encode())
+            else:
+                mensaje = "No hay clientes conectados."
+                ejecutivo_socket.send(mensaje.encode())
 
-        #elif solicitud == "4":   
+        elif solicitud == "3":
+            clientes_conectados = []  # Lista para almacenar los clientes conectados con todas sus acciones
+
+            # Iterar sobre los clientes para encontrar los que están conectados
+            for cliente_id, cliente_info in clientes_db["usuarios"]["clientes"].items():
+                if cliente_info["estado"] == "conectado":
+                    # Agregar una tupla (nombre, todas las acciones) a la lista
+                    todas_las_acciones = cliente_info["acciones"]  # Todas las acciones del cliente
+                    clientes_conectados.append((cliente_info['nombre'], todas_las_acciones))
+            if clientes_conectados:
+                mensaje = f"Historial de acciones: {(clientes_conectados)}"
+                ejecutivo_socket.send(mensaje.encode())
 
         elif solicitud == "5":
-
             if len(cola_espera) > 0:
+                accion = "Conectado con el Ejecutivo"
+                email_c = cola_espera[0][0]
+                clientes_db['usuarios']['clientes'][email_c]['acciones'].append(accion)
+                guardar_db()
                 ejecutivo = clientes_db["usuarios"]["ejecutivos"][email]["nombre"]
                 cliente_email = clientes_db["usuarios"]["clientes"][cola_espera[0][0]]["nombre"]
                 print(f"[SERVIDOR] {ejecutivo} conectado con {cliente_email}.")
@@ -236,10 +281,21 @@ def manejar_ejecutivo(ejecutivo_socket, email):
                         ejecutivo_socket.send("Cliente desconectado".encode())
                         sas=1
                         break
+                    if mensaje_de_ejecutivo == "operations":
+                        cliente = clientes_db["usuarios"]["clientes"][email_c]["nombre"]
+                        historial_operaciones = clientes_db["usuarios"]["clientes"][email_c]["acciones"]
+                        mensaje = f"Historial de operaciones de {cliente}: {historial_operaciones}"
+                        cliente_socket.send(mensaje.encode())
+                    if mensaje_de_ejecutivo == "history":
+                        cliente = clientes_db["usuarios"]["clientes"][email_c]["nombre"]
+                        historial_compras = clientes_db["usuarios"]["clientes"][email_c]["historial_compras"]
+                        mensaje = f"Historial de compras de {cliente}: {historial_compras}"
+                        ejecutivo_socket.send(mensaje.encode())
 
-                    cliente_socket.send(mensaje_de_ejecutivo.encode())  # enviar al cliente
-                    respuesta_de_cliente = cliente_socket.recv(1024).decode()  # recibir respuesta del cliente
-                    ejecutivo_socket.send(respuesta_de_cliente.encode())  # enviar respuesta al ejecutivo
+                    elif mensaje_de_ejecutivo:
+                        cliente_socket.send(mensaje_de_ejecutivo.encode())  # enviar al cliente
+                        respuesta_de_cliente = cliente_socket.recv(1024).decode()  # recibir respuesta del cliente
+                        ejecutivo_socket.send(respuesta_de_cliente.encode())  # enviar respuesta al ejecutivo
             else:
                 ejecutivo_socket.send("No hay clientes en cola.".encode())
         

@@ -158,4 +158,3 @@ def cliente_terminal():
 if __name__ == "__main__":
     cliente_terminal()
 
-

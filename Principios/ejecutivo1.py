@@ -12,9 +12,6 @@ def cargar_db():
         with open('clientes_db.json', 'r') as f:
             return json.load(f)
         
-def mostrar_estado(clientes_db):
-    msg= f"Clientes conectados: {len(clientes_conectados)}\nClientes en cola: {len(cola_espera)}"
-    return 0
 
 clientes_db = cargar_db()
 def ejecutivo_terminal():
@@ -59,18 +56,20 @@ def ejecutivo_terminal():
                 continue
             ejecutivo.send(opcion.encode())
             if opcion == '1':
+                mensaje = ejecutivo.recv(1024).decode()
+                print(f"[SERVIDOR]: {mensaje}")
+                mensaje2 = ejecutivo.recv(1024).decode()
+                print(f"[SERVIDOR]: {mensaje2}")
 
-                # Implementar la funcionalidad para mostrar el estado
-                mostrar_estado(clientes_db)
             elif opcion == '2':
                 # Mostrar detalles de los clientes conectados
-                mostrar_detalles(clientes_db)
+                mensaje = ejecutivo.recv(1024).decode()
+                print(f"[SERVIDOR]: {mensaje}")
             elif opcion == '3':
                 # Mostrar el historial del cliente que está siendo atendido
-                mostrar_historial(cliente_actual)
-            elif opcion == '4':
-                # Mostrar todas las operaciones realizadas por el cliente
-                mostrar_operaciones(cliente_actual)
+                mensaje = ejecutivo.recv(1024).decode()
+                print(f"[SERVIDOR]: {mensaje}")
+                
             elif opcion == '5':
                 mensaje = ejecutivo.recv(1024).decode()
                 if "No hay clientes" in mensaje:
@@ -80,12 +79,12 @@ def ejecutivo_terminal():
                         mensaje = input("Ejecutivo, ingresa tu mensaje: ").strip()
                         ejecutivo.send(mensaje.encode())  # enviar al servidor
                         respuesta = ejecutivo.recv(1024).decode()  # recibir respuesta del servidor
+                        if respuesta == "history":
+                            mensaje = ejecutivo.recv(1024).decode()
+                            print(f"[SERVIDOR]: {mensaje}")
                         if respuesta == "Cliente desconectado":
                             break
                         print(f"[Cliente] {respuesta}")
-            elif opcion == '6':
-                # Desconectar la conexión actual con un cliente
-                desconectar_cliente(cliente_actual)
             elif opcion == '7':                # Salir del sistema
                 print("Desconectando del servidor...")
                 ejecutivo.send("exit".encode())

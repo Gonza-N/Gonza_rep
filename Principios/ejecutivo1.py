@@ -54,8 +54,10 @@ def ejecutivo_terminal():
             print("[7] .exit - Desconectarse del servidor")
 
             opcion = input("Seleccione una opción: ")
+            if opcion not in ['1', '2', '3', '4', '5', '6', '7']:
+                print("Opción no válida. Ingrese una opción válida.")
+                continue
             ejecutivo.send(opcion.encode())
-
             if opcion == '1':
 
                 # Implementar la funcionalidad para mostrar el estado
@@ -84,17 +86,16 @@ def ejecutivo_terminal():
             elif opcion == '6':
                 # Desconectar la conexión actual con un cliente
                 desconectar_cliente(cliente_actual)
-            elif opcion == '7':
-                # Salir del sistema
+            elif opcion == '7':                # Salir del sistema
                 print("Desconectando del servidor...")
-                continuar = '0'            
-            else:
-                print("Opción no válida. Por favor, intente de nuevo.")
+                ejecutivo.send("exit".encode())
+                ejecutivo.close()
+                break    
             continuar = input("¿Desea realizar otra acción? [1] Sí [otro] No: ").strip()
-            if continuar != '1':
-                print("[CLIENTE] Desconectando...")
-                ejecutivo.close()         
-                break
+        if continuar != '1':
+            print("[CLIENTE] Desconectando...")      
+                
+        break
 
 
 if __name__ == "__main__":

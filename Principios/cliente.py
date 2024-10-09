@@ -145,14 +145,15 @@ def cliente_terminal():
                     respuesta = input(">:").strip()
                     cliente.send(respuesta.encode())  # enviar respuesta al servidor
                 
-            if opcion == "7":
+            if opcion == "7":               
                 print("[CLIENTE] Desconectando...")
+                cliente.send("exit".encode())
                 cliente.close()
                 break 
             continuar = input("¿Desea realizar otra acción? [1] Sí [otro] No: ").strip()
         if continuar != '1':
             print("[CLIENTE] Desconectando...")
-            cliente.close() 
+                        
         break
 if __name__ == "__main__":
     cliente_terminal()

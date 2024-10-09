@@ -53,6 +53,9 @@ def cliente_terminal():
             print("[7] Salir")
 
             opcion = input("Ingrese una opción: ").strip()
+            if opcion not in ['1', '2', '3', '4', '5', '6', '7']:
+                print("Opción no válida. Ingrese una opción válida.")
+                continue
             cliente.send(opcion.encode())
 
             if opcion == "1":
@@ -132,24 +135,27 @@ def cliente_terminal():
                 respuesta = cliente.recv(1024).decode()
                 print(f"[SERVIDOR]: {respuesta}")
             if opcion == "6":
-                respuesta = cliente.recv(1024).decode()
-                print(f"[SERVIDOR]: {respuesta}")
+                msg = cliente.recv(1024).decode()
+                print(f"[SERVIDOR]: {msg}")
                 while True:
-                    respuesta = cliente.recv(1024).decode()
-                    print(f"[ejecutivo]: {respuesta}")
-                    opcion = input(">: ").strip()
-                    cliente.send(opcion.encode())
-                    
-                    break
-            if opcion == "7":
+                    mensaje = cliente.recv(1024).decode()  # recibir mensaje del servidor
+                    if mensaje == "Ejecutivo desconectado":
+                        break
+                    print(f"[Ejecutivo] {mensaje}")
+                    respuesta = input(">:").strip()
+                    cliente.send(respuesta.encode())  # enviar respuesta al servidor
+                
+            if opcion == "7":               
                 print("[CLIENTE] Desconectando...")
+                cliente.send("exit".encode())
                 cliente.close()
                 break 
             continuar = input("¿Desea realizar otra acción? [1] Sí [otro] No: ").strip()
         if continuar != '1':
             print("[CLIENTE] Desconectando...")
-            cliente.close() 
+                        
         break
 if __name__ == "__main__":
     cliente_terminal()
+
 

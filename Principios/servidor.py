@@ -6,12 +6,13 @@ import random
 import datetime
 
 def guardar_db():
-    with open('clientes_db.json', 'w') as f:
-        json.dump(clientes_db, f)
+    with open('clientes_db.json', 'w') as f:  
+        json.dump(clientes_db, f) 
 
 def cargar_db():
-        with open('clientes_db.json', 'r') as f:
-            return json.load(f)
+    with open('clientes_db.json', 'r') as f:  
+        return json.load(f)
+
 
 clientes_db = cargar_db()
 clientes_conectados = {}
@@ -24,29 +25,39 @@ def manejar_cliente(cliente_socket, direccion):
             cliente_socket.send("Correo encontrado. Por favor ingrese su contraseña:".encode())
             while True:
                 password = cliente_socket.recv(1024).decode().strip()
-                if clientes_db['usuarios']['clientes'][email]["password"] == password:
+                if "exit" in password:
+                    break
+                elif clientes_db['usuarios']['clientes'][email]["password"] == password:
                     cliente_socket.send("Autenticación exitosa.".encode())
                     nombre = clientes_db['usuarios']['clientes'][email]["nombre"]
-                    print(f"{nombre} se ha conectado.")
+                    print(f"[SERVIDOR] {nombre} se ha conectado.")
                     clientes_conectados[email] = cliente_socket
+                    accion = "Conexión"
+                    clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
+                   
                     manejar_sesiones(cliente_socket, email)
                 else:
                     cliente_socket.send("Error: Contraseña incorrecta.".encode())
+            break
         elif email in clientes_db['usuarios']['ejecutivos']:
             cliente_socket.send("Correo encontrado. Por favor ingrese su contraseña:".encode())
             while True:
                 password = cliente_socket.recv(1024).decode().strip()
-                if clientes_db['usuarios']['ejecutivos'][email]["password"] == password:
+                if "exit" in password:
+                    break
+                elif clientes_db['usuarios']['ejecutivos'][email]["password"] == password:
                     cliente_socket.send("Autenticación exitosa.".encode())
                     nombre = clientes_db['usuarios']['ejecutivos'][email]["nombre"]
-                    print(f"{nombre} se ha conectado.")
+                    print(f"[SERVIDOR] {nombre} se ha conectado.")
                     clientes_conectados[email] = cliente_socket
-                    manejar_ejectivo(cliente_socket, email)
+                    manejar_ejecutivo(cliente_socket, email)
                 else:
                     cliente_socket.send("Error: Contraseña incorrecta.".encode())
+            break
     
         else:
             cliente_socket.send("Error: Correo no encontrado.".encode())
+        break
 
 
 def manejar_sesiones(cliente_socket, email):
@@ -58,8 +69,12 @@ def manejar_sesiones(cliente_socket, email):
             nueva_contraseña = cliente_socket.recv(1024).decode().strip()
             clientes_db['usuarios']['clientes'][email]["password"] = nueva_contraseña
             guardar_db()
-            print(f"Contraseña de {email} cambiada.")
+            nombre = clientes_db['usuarios']['clientes'][email]["nombre"]
+            print(f"[SERVIDOR] Contraseña de {nombre} cambiada.")
             cliente_socket.send("Contraseña cambiada exitosamente.".encode())
+            accion = "Cambio de contraseña"
+            clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
+            guardar_db()
         elif solicitud == "2":
             historial_2024 = []
             # Suponiendo que 'email' contiene el correo del cliente que estamos consultando
@@ -69,7 +84,10 @@ def manejar_sesiones(cliente_socket, email):
 
             if historial_2024:
                 cliente = clientes_db['usuarios']['clientes'][email]["nombre"]
-                print(f"{cliente} consultó su historial de compras.")
+                print(f"[SERVIDOR] {cliente} consultó su historial de compras.")
+                accion = "Consulta de historial de compras"
+                clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
+                guardar_db()
                 # Crear una respuesta formateada con los detalles de cada compra incluyendo el estado
                 detalles_compras = []
                 for compra in historial_2024:
@@ -110,7 +128,10 @@ def manejar_sesiones(cliente_socket, email):
                             # Confirmación de la compra
                             cliente_socket.send("Compra Exitosa. Gracias por su compra.".encode())
                             nombre = clientes_db['usuarios']['clientes'][email]["nombre"]
-                            print(f"{nombre} compró {producto} [x{cantidad}].")
+                            print(f"[SERVIDOR] {nombre} compró {producto} [x{cantidad}].")
+                            accion = f"Compra de producto {producto} [x{cantidad}]"
+                            clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
+                            guardar_db()
                             break
                         else:
                             # Notificar al cliente que el stock es insuficiente
@@ -140,10 +161,14 @@ def manejar_sesiones(cliente_socket, email):
 
             # Guardamos la base de datos si se realizó una eliminación
             if encontrado:
+                cliente = clientes_db['usuarios']['clientes'][email]["nombre"]
                 clientes_db["productos"][producto_a_eliminar]["stock"] += cantidad_a_eliminar
                 guardar_db()
-                print(f"{email} devolvió {producto_a_eliminar}.")
+                print(f"[SERVIDOR] {cliente} devolvió {producto_a_eliminar} [x{cantidad_a_eliminar}].")
                 cliente_socket.send("Devolución exitosa.".encode())
+                accion = f"Devolución de producto {producto_a_eliminar} [x{cantidad_a_eliminar}]"
+                clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
+                guardar_db()
             else:
                 cliente_socket.send("No se encontró el producto para devolución.".encode())
         elif solicitud == "5":
@@ -151,7 +176,8 @@ def manejar_sesiones(cliente_socket, email):
             if producto in clientes_db['usuarios']['clientes'][email]["historial_compras"]:
                 clientes_db['usuarios']['clientes'][email]["historial_compras"].remove(producto)
                 guardar_db()
-                print(f"{email} confirmó envío de {producto}.")
+                nombre = clientes_db['usuarios']['clientes'][email]["nombre"]
+                print(f"[SERVIDOR] {nombre} confirmó envío de {producto}.")
                 cliente_socket.send("Envío confirmado.".encode())
             else:
                 cliente_socket.send("Error: Producto no encontrado.".encode())
@@ -159,21 +185,27 @@ def manejar_sesiones(cliente_socket, email):
         elif solicitud == "6":
             cola_espera.append([email,cliente_socket])
             cliente = clientes_db["usuarios"]["clientes"][email]["nombre"]
-            print(f"{cliente} en cola de espera.")
-            cliente_socket.send("En cola de espera.".encode())
+            print(f"[SERVIDOR] {cliente} en cola de espera.")
+            cliente_socket.send("En cola de espera. Tiempo estimado: 1 minuto".encode())
+            accion = "Derivado a ejecutivo"
+            clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
+            guardar_db()
             sas=0
             while True:
                 if sas==1:
                     break
 
         elif solicitud == "7":
-            print(f"{email} se ha desconectado.")
-            cliente_socket.send("Desconectado.".encode())
+            nombre = clientes_db['usuarios']['clientes'][email]["nombre"]
+            print(f"[SERVIDOR] {nombre} se ha desconectado.")
+            accion = "Desconexión"
+            clientes_db['usuarios']['clientes'][email]['acciones'].append(accion)
+            guardar_db()
             break
         else:
             cliente_socket.send("Opción no válida.".encode())
 
-def manejar_ejectivo(ejecutivo_socket, email):
+def manejar_ejecutivo(ejecutivo_socket, email):
     global sas
     global cola_espera
     while True:
@@ -192,12 +224,9 @@ def manejar_ejectivo(ejecutivo_socket, email):
             if len(cola_espera) > 0:
                 ejecutivo = clientes_db["usuarios"]["ejecutivos"][email]["nombre"]
                 cliente_email = clientes_db["usuarios"]["clientes"][cola_espera[0][0]]["nombre"]
-                print(f"{ejecutivo} conectado con {cliente_email}.")
-                cliente_socket = cola_espera[0][1]
-                if len(cola_espera) > 1:
-                    cola_espera = cola_espera[1:]
-                else:
-                    cola_espera = deque()
+                print(f"[SERVIDOR] {ejecutivo} conectado con {cliente_email}.")
+                cliente_socket = cola_espera[0][1]              
+                cola_espera.popleft()
                 ejecutivo_socket.send(f"Conectado con {cliente_email}.".encode())
                 while True:
 
@@ -215,8 +244,8 @@ def manejar_ejectivo(ejecutivo_socket, email):
                 ejecutivo_socket.send("No hay clientes en cola.".encode())
         
         elif solicitud == "7":
-            ejecutivo_socket.send("Desconectado.".encode())
-            ejecutivo.close()
+            nombre = clientes_db['usuarios']['ejecutivos'][email]["nombre"]
+            print(f"[SERVIDOR] {nombre} se ha desconectado.")
             break
     
 

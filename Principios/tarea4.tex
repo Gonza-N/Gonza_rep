@@ -1,0 +1,339 @@
+\documentclass[
+  11pt,
+  letterpaper,
+  % addpoints,
+  answers
+]{exam}
+
+\usepackage{../tarea}
+
+\begin{document}
+\begin{minipage}{0.42\textwidth}
+    \includegraphics[width=\textwidth]{../fcfm_die}
+\end{minipage}
+\begin{minipage}{0.53\textwidth}
+\begin{center} 
+\large\textbf{ Principios de Comunicaciones} (EL4112) \\
+\large\textbf{Tarea 4} \\
+\normalsize Prof.~Cesar Azurdia\\
+\normalsize Prof Aux.~Sebastián Arancibia, Fernanda Borja, Diego Castillo\\
+\normalsize Ayudantes: Cristóbal Allendes, Ammi Beltrán, Gonzalo Alegría.
+\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+\noindent
+\vspace{.85cm}
+\begin{questions}
+    
+\question{Pregunta 1: Derivar en forma analítica la expresión obtenida en la ecuación (1) y explicar detalladamente cuáles son los componentes de atenuación, desviación en frecuencia y en tiempo. ¿Por qué se producen dichos efectos?}
+\begin{solution}
+
+La señal recibida \( y(t) \) se expresa como:
+
+\[
+y(t) = \text{Re} \left\{ \sum_{\ell} a_{\ell}(t) x(t - \tau_{\ell}) e^{j2\pi (F_c + \Delta F_{\ell})(t - \tau_{\ell})} \right\}
+\]
+
+\begin{itemize}
+    \item \textbf{\( a_{\ell}(t) \)}: Representa la amplitud y fase, estas varían en el tiempo para cada \textit{path} \( \ell \), que incluye efectos de atenuación y cambios de fase debido a las diferencias en la propagación de cada \textit{path}.
+    
+    \item \textbf{\( x(t - \tau_{\ell}) \)}: Es la señal transmitida \( x(t) \), desplazada en tiempo por \( \tau_{\ell} \), correspondiente al retardo de propagación del \textit{path} \( \ell \). Los retardos diferentes entre cada \textit{path} pueden causar interferencia entre las señales recibidas.
+    
+    \item \textbf{\( e^{j2\pi (F_c + \Delta F_{\ell})(t - \tau_{\ell})} \)}: Expresa la modulación en frecuencia de la señal para cada \textit{path}, donde \( F_c \) es la frecuencia portadora y \( \Delta F_{\ell} \) es la desviación de frecuencia del \textit{path} \( \ell \), esto es causado típicamente por el efecto Doppler debido a movimientos relativos en el entorno de propagación.
+\end{itemize}
+
+\textbf{Explicación de los Efectos:}
+\begin{itemize}
+    \item \textbf{Atenuación}: La atenuación se produce debido a la pérdida de energía de la señal a medida que se propaga a través del canal, esto puede ser causado por la absorción de energía por el medio de propagación, la dispersión de energía en diferentes direcciones, la reflexión de energía en obstáculos, entre otros.
+    \item \textbf{Desviación en Frecuencia (Efecto Doppler)}: La desviación en frecuencia se produce debido a movimientos relativos entre el transmisor y el receptor, esto causa un cambio en la frecuencia de la señal recibida, lo que puede llevar a interferencia en la recepción de la señal, más conocido como el efecto Doppler.
+    \item \textbf{Retardo Temporal (Multipath Delay)}: El retardo temporal se produce debido a que las señales recibidas por diferentes caminos pueden llegar al receptor en momentos diferentes, esto puede causar interferencia entre las señales recibidas, lo que puede llevar a la degradación de la calidad de la señal recibida.
+\end{itemize}
+\end{solution}
+\question{Explique el concepto de máxima capacidad de Shannon en un canal perfecto únicamente con ruido blanco
+gaussiano aditivo (AWGN) y la importancia de lo propuesto por Shannon. ¿Cuáles son las variables físicas
+que definen la capacidad del canal?}
+\begin{solution}
+El concepto propuesto por Shannon nos habla de la máxima capacidad de información que puede ser transmitida con un cierto nivel de ruido gaussiano, a través de un canal de comunicación, sin errores y medida en bits por segundo. La importancia de este concepto radica en varios aspectos: es fundamental en proponer una base teorica, que nos permite comprender los limites de los sistemas de comunicaciones y la tasa de datos transmitida, además al establecer un máximo teórico, ayuda en la creación y diseño de nuevos sistemas de comunicación y en la optimización de los sistemas existentes. Además al conocer el máximo teórico, se puede comparar con la tasa de datos transmitida en un sistema real, para evaluar su eficiencia y calidad.
+
+Las varibales físicas que definen la capacidad del canal son: El ancho de banda del canal, la potencia de la señal transmitida, la potencia del ruido, la relación señal a ruido (SNR), la frecuencia de muestreo, la duración de la señal, entre otros.
+\end{solution}
+\question{Determine la capacidad de canal de Shannon para el caso en que el sistema de comunicación cuente con un ancho de banda infinita, interferencia co-canal y ruido aditivo blanco gaussiano.}
+
+\[
+C_0 = \lim_{B \to \infty} B \log_2 (1 + \text{SINR})
+\]
+
+
+\[
+\text{SINR} = \frac{P}{N_0 B + P_{I}}
+\]
+
+Donde \(B\) es el ancho de banda del sistema, SINR es la relación de señal a interferencia más ruido, \(P\) es la potencia recibida, \(N_0\) es la densidad espectral del ruido y \(I\) es la potencia de la señal interferente.
+\begin{solution}
+Para el caso en que el sistema de comunicación cuente con un ancho de banda infinito, la capacidad de canal de Shannon se puede expresar como: 
+\begin{equation}
+    C_0 = \lim_{B \to \infty} B \log_2 (1 + \text{SINR})
+\end{equation}
+Donde SINR será cero, ya que B tiende a infinito en el denominador, por lo que reemplazando en $C_0$ se obtiene:
+\begin{equation}
+    C_0 = \lim_{B \to \infty} B \log_2 (1 + 0) = \lim_{B \to \infty} B \log_2 (1) = \lim_{B \to \infty} B \cdot 0 = 0
+\end{equation}
+Por lo tanto, la capacidad de canal de Shannon para el caso en que el sistema de comunicación cuente con un ancho de banda infinito, interferencia co-canal y ruido aditivo blanco gaussiano es cero.
+\end{solution}
+\question{Un sistema de comunicación digital puede transmitir 8 diferentes símbolos. Los símbolos A, B, C, D, E, F, G, H ocurren con probabilidades 0.1, 0.12, 0.08, 0.17, 0.22, 0.05, 0.15, 0.11, respectivamente.}
+\begin{parts}
+    \part{Calcule la entropía \( H \) del sistema de los códigos A, B, C, D, E, F, G y H.}
+    \part{Calcule la auto-información de los mensajes \( X = \{A, C, E, G\} \), \( W = \{B, D, F, H\} \) y \( Z = \{A, B, F, G, H\} \). Interprete los resultados obtenidos por \( X \), \( W \) y \( Z \).}
+\end{parts}
+\begin{solution}
+\begin{parts}
+\part{Para calcular la entropía \( H \) del sistema de los códigos A, B, C, D, E, F, G y H, se utiliza la fórmula de la entropía de Shannon:}
+\begin{equation}
+    H = - \sum_{i=1}^{n} p_i \log_2 p_i
+\end{equation}    
+donde $p_{i}$ es la probabilidad de ocurrencia del símbolo \( i \) y \( n \) es el número de símbolos. Reemplazando en la ecuación (3) se obtiene:
+\begin{multline}
+H = - (0.1 \log_2 0.1 + 0.12 \log_2 0.12 + 0.08 \log_2 0.08 + 0.17 \log_2 0.17 + \\
+0.22 \log_2 0.22 + 0.05 \log_2 0.05 + 0.15 \log_2 0.15 + 0.11 \log_2 0.11)
+\end{multline}
+\begin{multline}
+H \approx - (0.1 \times (-3.3219) + 0.12 \times (-3.0589) + 0.08 \times (-3.6439) + \\
+0.17 \times (-2.5699) + 0.22 \times (-2.1844) + 0.05 \times (-4.3219) + 0.15 \times (-2.7370) + 0.11 \times (-3.1898))
+\end{multline}
+
+\begin{equation}
+    H \approx 2.646 \text{ bits}
+\end{equation}
+
+\part{Para calcular la auto-información de los mensajes \( X = \{A, C, E, G\} \), \( W = \{B, D, F, H\} \) y \( Z = \{A, B, F, G, H\} \), se utiliza la fórmula de la auto-información:}
+
+\[
+I(x) = -\log_2 p(x)
+\]
+donde \( p(x) \) es la probabilidad del mensaje \( x \).
+
+Mensaje \( X = \{A, C, E, G\} \). La probabilidad de \( X \) es:
+\[
+p(X) = p(A) + p(C) + p(E) + p(G) = 0.1 + 0.08 + 0.22 + 0.15 = 0.55
+\]
+La auto-información de \( X \) es:
+\[
+I(X) = -\log_2(0.55) \approx 0.862 \text{ bits}
+\]
+
+Mensaje \( W = \{B, D, F, H\} \). La probabilidad de \( W \) es:
+\[
+p(W) = p(B) + p(D) + p(F) + p(H) = 0.12 + 0.17 + 0.05 + 0.11 = 0.45
+\]
+La auto-información de \( W \) es:
+\[
+I(W) = -\log_2(0.45) \approx 1.137 \text{ bits}
+\]
+
+Mensaje \( Z = \{A, B, F, G, H\} \). La probabilidad de \( Z \) es:
+\[
+p(Z) = p(A) + p(B) + p(F) + p(G) + p(H) = 0.1 + 0.12 + 0.05 + 0.15 + 0.11 = 0.53
+\]
+La auto-información de \( Z \) es:
+\[
+I(Z) = -\log_2(0.53) \approx 0.918 \text{ bits}
+\]
+
+En cuanto a la interpretación de los resultados obtenidos, se puede decir que la auto-información de un mensaje es mayor cuando la probabilidad de ocurrencia de los símbolos es menor, lo que significa que la información transmitida es más valiosa y menos predecible a medida que disminuye su probabilidad.
+\end{parts}
+\end{solution}
+
+\question{Para el año 2022-2025 se desea contar con enlaces de comunicación inalámbricos con capacidad de 1Gbps. El Release 15, primer estándar 5G, hace uso de portadoras de alta frecuencia (26 GHz) y anchos de banda superiores a los empleados actualmente.}
+
+\begin{parts}
+    \part{Determine el SINR mínimo para obtener la capacidad de 1Gbps teniendo un ancho de banda de 200MHz, 500MHz, 1GHz, 5GHz y 10GHz.}
+    \part{¿Qué sucede al incrementar el ancho de banda del sistema?}
+    \part{¿Qué sucedería en el caso en que nuestro enlace fuese afectado por un canal extremadamente ruidoso (SNR \(\to\) 0)?}
+\end{parts}
+
+\begin{solution}
+\begin{parts}
+\part{Para determinar el SINR mínimo para obtener la capacidad de 1Gbps, se utiliza la fórmula de la capacidad de canal de Shannon:}
+\[
+C = B \log_2 (1 + \text{SINR})
+\]
+donde \( B \) es el ancho de banda del sistema y \( \text{SINR} \) es la relación señal a interferencia más ruido. Despejando el SINR se obtiene:
+\[
+\text{SINR} = 2^{C/B} - 1
+\]
+Luego el cálculo del SINR mínimo para obtener la capacidad de 1Gbps con los anchos de banda dados es:	
+\[
+\text{SINR} = \frac{1 \times 10^9}{200 \times 10^6} - 1 = 2^5 - 1 = 31
+\]
+
+\[
+\text{SINR} = \frac{1 \times 10^9}{500 \times 10^6} - 1 = 2^2 - 1 = 3
+\]
+
+\[
+\text{SINR} = \frac{1 \times 10^9}{1 \times 10^9} - 1 = 2^1 - 1 = 1
+\]
+
+\[
+\text{SINR} = \frac{1 \times 10^9}{5 \times 10^9} - 1 = 2^{0.2} - 1 \approx 0.1487
+\]
+
+\[
+\text{SINR} = \frac{1 \times 10^9}{10 \times 10^9} - 1 = 2^{0.1} - 1 \approx 0.0718
+\]
+
+\part{Al incrementar el ancho de banda, el valor requerido del SINR disminuye, lo que implica que para anchos de banda más grandes, la calidad de la señal requerida puede ser menor para alcanzar la misma capacidad.}
+
+\part{Si el SNR tiende a cero, implicando un canal extremadamente ruidoso, entonces el SINR también se acercará a cero, haciendo imposible alcanzar la capacidad deseada de 1Gbps independientemente del ancho de banda. Esto resulta en una capacidad del canal que tiende a ser nula, lo que imposibilita una comunicación efectiva. Estos resultaldos coinciden con lo calculado en el problema 3.}
+\end{parts}
+\end{solution}
+
+
+\question{El idioma español está compuesto por 27 diferentes caracteres.}
+\begin{parts}
+    \part{Calcule el promedio ponderado de la auto-información en bits/carácter para el idioma español, asumiendo que cada uno de los 27 caracteres del alfabeto tienen la misma posibilidad de ocurrencia.}
+    
+    \part{En todos los idiomas, incluido el español, los caracteres no son empleados con la misma frecuencia. El caso del inciso a) representa el límite superior del promedio de información contenida en cada carácter. Calcule el promedio ponderado de la auto-información en bits/carácter asumiendo las siguientes probabilidades de ocurrencia:}
+    \begin{itemize}
+        \item A12.08\%, B1.42\%, C4.68\%, D5.86\%, E13.68\%, F0.69\%, G1.01\%, H0.70\%, I6.25\%, J0.44\%, K0.02\%, L4.97\%, M3.15\%, N6.71\%, N0.31\%, O8.68\%, P2.51\%, Q0.88\%, R6.87\%, S7.98\%, T4.63\%, U3.93\%, V0.90\%, W0.01\%, X0.22\%, Y0.90\%, Z0.52\%
+    \end{itemize}
+
+    \part{Determine la auto-información proporcionada por las siguientes palabras en bits/carácter: ``estudiante'', ``universidad'', ``ingeniería'', ``electrónica'', ``información''. Interprete los resultados obtenidos.}
+\end{parts}
+\begin{solution}
+\begin{parts}
+\part{Para calcular el promedio ponderado de la auto-información en bits/carácter para el idioma español, asumiendo que cada uno de los 27 caracteres del alfabeto tienen la misma posibilidad de ocurrencia, se utiliza la fórmula de la auto-información:}
+\[
+I(x) = -\log_2\left(\frac{1}{27}\right) = \log_2(27)
+\]
+El promedio ponderado de la auto-información, considerando que todos los caracteres tienen la misma probabilidad, es igualmente:
+\[
+\text{Promedio ponderado de } I = \log_2(27) \approx 4.755 \text{ bits/caracter}
+\]
+\part{Auto-Información con Probabilidades Diferentes}
+El promedio ponderado de la auto-información para el alfabeto español, utilizando las probabilidades específicas proporcionadas, se calcula como:
+\[
+\text{Promedio ponderado de } I = \sum_{i=1}^{27} p_i \log_2 \left(\frac{1}{p_i}\right) \approx 4.035 \text{ bits/caracter}
+\]
+Esta parte se realizo usando python: por lo que dejaré el codigo a continuación:
+\begin{verbatim}
+    import numpy as np
+
+    
+    probabilidades = {
+        'A': 12.08, 'B': 1.42, 'C': 4.68, 'D': 5.86, 'E': 13.68,
+        'F': 0.69, 'G': 1.01, 'H': 0.70, 'I': 6.25, 'J': 0.44,
+        'K': 0.02, 'L': 4.97, 'M': 3.15, 'N': 6.71, 'Ñ': 0.31,
+        'O': 8.68, 'P': 2.51, 'Q': 0.88, 'R': 6.87, 'S': 7.98,
+        'T': 4.63, 'U': 3.93, 'V': 0.90, 'W': 0.01, 'X': 0.22,
+        'Y': 0.90, 'Z': 0.52
+    }
+    probabilidades = {k: v / 100 for k, v in probabilidades.items()}
+    
+    
+    prom = sum(-p * np.log2(p) for p in probabilidades.values())
+    
+    prom
+\end{verbatim}    
+\part{Auto-Información de Palabras Específicas}
+Para calcular la auto-información proporcionada por palabras específicas como ``estudiante'', ``universidad'', ``ingeniería'', ``electrónica'' y ``información'', se sumaría la auto-información de cada carácter en la palabra y luego se dividiría por el número de caracteres de la palabra para obtener el promedio por carácter. Las probabilidades de cada letra individual son usadas para determinar su contribución a la palabra completa. Esto tambíen se realizo con el codigo de python anterior:
+\begin{itemize}
+    \item ``estudiante'': 3.796 bits/carácter
+    \item ``universidad'': 4.089 bits/carácter
+    \item ``ingeniería'': 3.908 bits/carácter
+    \item ``electrónica'': 3.789 bits/carácter
+    \item ``información'': 4.213 bits/carácter
+\end{itemize}
+Luego el codigo es:
+\begin{verbatim}
+    import numpy as np
+
+    probabilidades = {
+        'A': 12.08, 'B': 1.42, 'C': 4.68, 'D': 5.86, 'E': 13.68,
+        'F': 0.69, 'G': 1.01, 'H': 0.70, 'I': 6.25, 'J': 0.44,
+        'K': 0.02, 'L': 4.97, 'M': 3.15, 'N': 6.71, 'Ñ': 0.31,
+        'O': 8.68, 'P': 2.51, 'Q': 0.88, 'R': 6.87, 'S': 7.98,
+        'T': 4.63, 'U': 3.93, 'V': 0.90, 'W': 0.01, 'X': 0.22,
+        'Y': 0.90, 'Z': 0.52
+    }
+    
+    probabilidades = {k: v / 100 for k, v in probabilidades.items()}
+
+    palabras = {
+        "estudiante": "estudiante",
+        "universidad": "universidad",
+        "ingenieria": "ingenieria",
+        "electronica": "electronica",
+        "informacion": "informacion"
+    }
+    
+
+    def calcular_info_palabra(palabra):
+        return -sum(np.log2(probabilidades[letra.upper()]) for letra in palabra) / len(palabra)
+
+    info_palabras = {palabra: calcular_info_palabra(palabra) for palabra in palabras}
+\end{verbatim}
+\end{parts}
+\end{solution}
+\question{En el idioma inglés, los caracteres no son empleados con la misma frecuencia en comparación al idioma español.}
+\begin{parts}
+    \part Determine el promedio ponderado de la auto-información en bits/carácter del idioma inglés asumiendo las siguientes probabilidades de ocurrencia:
+    \begin{itemize}
+        \item \( p = 0.10 \) para las letras a, e, o, t
+        \item \( p = 0.07 \) para las letras h, i, n, r, s
+        \item \( p = 0.02 \) para las letras c, d, f, l, m, p, u, y
+        \item \( p = 0.01 \) para las letras b, g, j, k, q, v, w, x, z
+    \end{itemize}
+
+    \part Compare el resultado obtenido en el inciso anterior con respecto al problema 6.b. Interprete los resultados.
+\end{parts}
+\begin{solution}
+\begin{parts}
+\part{Se calcula el promedio ponderado de la auto-información usando la fórmula:}
+\[ 
+\text{Promedio ponderado} = \sum_{i=1}^{n} p_i \log_2 \left(\frac{1}{p_i}\right) 
+\]
+Donde \( p_i \) son las probabilidades dadas para cada grupo de letras. El cálculo se hará en Python para precisión. Donde se obtiene que el promedio ponderado de la auto-información en bits/carácter para el idioma inglés es de aproximadamente 4.1725 bits/carácter.
+\begin{verbatim}
+import numpy as np
+
+probabilidades_ingles = {
+    'a': 0.10, 'e': 0.10, 'o': 0.10, 't': 0.10,
+    'h': 0.07, 'i': 0.07, 'n': 0.07, 'r': 0.07, 's': 0.07,
+    'c': 0.02, 'd': 0.02, 'f': 0.02, 'l': 0.02, 'm': 0.02, 'p': 0.02, 'u': 0.02, 'y': 0.02,
+    'b': 0.01, 'g': 0.01, 'j': 0.01, 'k': 0.01, 'q': 0.01, 'v': 0.01, 'w': 0.01, 'x': 0.01, 'z': 0.01
+}
+
+def calcular_promedio_ponderado(probabilidades):
+    # Calcula la suma ponderada de la auto-información para cada carácter
+    promedio_ponderado = sum(-p * np.log2(p) for p in probabilidades.values())
+    return promedio_ponderado
+
+promedio_ponderado_ingles = calcular_promedio_ponderado(probabilidades_ingles)
+promedio_ponderado_ingles
+\end{verbatim}
+
+\part{La comparación entre el ingles y el español, es bastante similiar ya que los resultados obtenidos matematicamente no se alejan uno del otro, esto se debe a que ambos idiomas comparten una cantidad similar de letras, por lo que la auto-información promedio por carácter es similar en ambos casos, indicando que ambos idiomas son cercanos en términos informativos, es decir son parecidos en eficiencia, además podemos decir que la información en promedio transmitida por cada caracter es parecida.}
+\end{parts}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{questions}
+\end{document}

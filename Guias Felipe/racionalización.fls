@@ -1,7 +1,7 @@
-PWD c:\Users\Gonzalo\Documents\GitHub\Gonza_rep\Principios
+PWD c:\Users\Gonzalo\Documents\GitHub\Gonza_rep\Guias Felipe
 INPUT C:\Users\Gonzalo\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Gonzalo\Documents\GitHub\Gonza_rep\Principios\tarea4.tex
-OUTPUT tarea4.log
+INPUT c:\Users\Gonzalo\Documents\GitHub\Gonza_rep\Guias Felipe\racionalización.tex
+OUTPUT racionalización.log
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\exam\exam.cls
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\exam\exam.cls
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
@@ -115,10 +115,10 @@ INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolo
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
-INPUT .\tarea4.aux
-INPUT .\tarea4.aux
-INPUT tarea4.aux
-OUTPUT tarea4.aux
+INPUT .\racionalización.aux
+INPUT .\racionalización.aux
+INPUT racionalización.aux
+OUTPUT racionalización.aux
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -130,7 +130,7 @@ INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf
 INPUT ..\fcfm_die.pdf
 INPUT ..\fcfm_die.pdf
 INPUT ..\fcfm_die.pdf
-OUTPUT tarea4.pdf
+OUTPUT racionalización.pdf
 INPUT ..\fcfm_die.pdf
 INPUT ..\fcfm_die.pdf
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
@@ -158,11 +158,11 @@ INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\s
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\Gonzalo\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt10.tfm
-INPUT tarea4.aux
+INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT racionalización.aux
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
@@ -177,15 +177,11 @@ INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
+INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb
-INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb

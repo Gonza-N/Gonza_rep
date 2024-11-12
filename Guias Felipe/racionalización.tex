@@ -1,0 +1,181 @@
+\documentclass[
+  11pt,
+  letterpaper,
+  % addpoints,
+  answers
+]{exam}
+
+\usepackage{../tarea}
+
+\begin{document}
+\begin{minipage}{0.42\textwidth}
+    \includegraphics[width=\textwidth]{../fcfm_die}
+\end{minipage}
+\begin{minipage}{0.53\textwidth}
+\begin{center} 
+\large\textbf{Clases Particulares} \\
+\normalsize Prof.~Gonzalo Narváez.
+\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+\noindent
+
+
+
+\section{Introducción a la Racionalización}
+La racionalización es un proceso matemático que permite simplificar expresiones que contienen raíces (radicales) en el denominador. Esto facilita el cálculo y la interpretación de expresiones sin raíces en el denominador, ya que los números enteros o fracciones sin raíces son más manejables.
+
+\section{Concepto de Radicales}
+Un radical es una operación que encuentra un número que, multiplicado por sí mismo, da el valor original. Algunos ejemplos comunes son:
+\[
+\sqrt{4} = 2 \quad \text{y} \quad \sqrt[3]{8} = 2
+\]
+
+Las propiedades básicas de los radicales incluyen:
+\begin{align*}
+\sqrt{a} \cdot \sqrt{b} &= \sqrt{a \cdot b} \\
+\frac{\sqrt{a}}{\sqrt{b}} &= \sqrt{\frac{a}{b}}
+\end{align*}
+
+\section{Proceso de Racionalización}
+Racionalizar significa eliminar los radicales del denominador de una fracción, multiplicando tanto el numerador como el denominador por un valor que simplifique la raíz. Esto se hace para facilitar los cálculos.
+
+\section{Tipos de Racionalización y Ejemplos}
+
+\subsection{Racionalización de una Raíz Cuadrada Simple en el Denominador}
+Ejemplo:
+\[
+\frac{5}{\sqrt{3}}
+\]
+Proceso: Multiplicamos el numerador y el denominador por \( \sqrt{3} \):
+\[
+\frac{5 \cdot \sqrt{3}}{\sqrt{3} \cdot \sqrt{3}} = \frac{5 \sqrt{3}}{3}
+\]
+
+\subsection{Racionalización con Suma o Resta en el Denominador (Binomio Conjugado)}
+Cuando tenemos una expresión en el denominador con suma o resta de radicales, como \( 2 + \sqrt{5} \), podemos utilizar la técnica de multiplicación por el binomio conjugado. El conjugado de una expresión \( a + b \) es \( a - b \), y multiplicar por el conjugado nos permite eliminar los términos radicales en el denominador.
+
+\subsubsection*{Ejemplo:}
+\[
+\frac{3}{2 + \sqrt{5}}
+\]
+Proceso: Multiplicamos el numerador y el denominador por el conjugado \( 2 - \sqrt{5} \):
+\[
+\frac{3(2 - \sqrt{5})}{(2 + \sqrt{5})(2 - \sqrt{5})}
+\]
+Al expandir el denominador utilizando la identidad de suma por diferencia, sabemos que:
+\[
+(a + b)(a - b) = a^2 - b^2
+\]
+En este caso:
+\[
+(2 + \sqrt{5})(2 - \sqrt{5}) = 2^2 - (\sqrt{5})^2 = 4 - 5 = -1
+\]
+Así, la expresión se simplifica a:
+\[
+\frac{3(2 - \sqrt{5})}{-1} = -3(2 - \sqrt{5}) = -6 + 3\sqrt{5}
+\]
+Este proceso elimina el radical del denominador.
+
+\subsection{Racionalización de una Raíz Cúbica en el Denominador}
+Ejemplo:
+\[
+\frac{2}{\sqrt[3]{4}}
+\]
+Proceso: Multiplicamos el numerador y denominador por \( \sqrt[3]{16} \):
+\[
+\frac{2 \cdot \sqrt[3]{16}}{\sqrt[3]{4} \cdot \sqrt[3]{16}} = \frac{2 \cdot \sqrt[3]{16}}{4}
+\]
+En este caso, buscamos un valor adecuado para convertir el radical en una potencia exacta.
+
+\section{Ejercicios Prácticos}
+A continuación, algunos ejercicios para practicar la racionalización:
+\begin{itemize}
+    \item Simplificar \( \frac{4}{\sqrt{2}} \)
+    \item Simplificar \( \frac{5}{3 + \sqrt{2}} \)
+    \item Simplificar \( \frac{7}{\sqrt[3]{5}} \)
+\end{itemize}
+
+\section{Conclusión y Aplicaciones Prácticas}
+La racionalización transforma expresiones con raíces en el denominador, haciéndolas más simples y fáciles de manejar. Este método es útil en campos como la física y la ingeniería, donde las expresiones simplificadas son esenciales para resolver problemas.
+
+\section*{Propiedades de las Raíces}
+
+\subsection*{Propiedad 1: Raíz de un producto}
+Si \( a \geq 0 \) y \( b \geq 0 \), entonces:
+\[
+\sqrt{a \cdot b} = \sqrt{a} \cdot \sqrt{b}
+\]
+
+\textbf{Ejemplo:} Calcular \( \sqrt{9 \cdot 16} \).
+\[
+\sqrt{9 \cdot 16} = \sqrt{9} \cdot \sqrt{16} = 3 \cdot 4 = 12
+\]
+
+\textbf{Ejercicio:} Simplifica \( \sqrt{25 \cdot 4} \).
+
+\subsection*{Propiedad 2: Raíz de un cociente}
+Si \( a \geq 0 \) y \( b > 0 \), entonces:
+\[
+\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}
+\]
+
+\textbf{Ejemplo:} Calcular \( \sqrt{\frac{36}{9}} \).
+\[
+\sqrt{\frac{36}{9}} = \frac{\sqrt{36}}{\sqrt{9}} = \frac{6}{3} = 2
+\]
+
+\textbf{Ejercicio:} Simplifica \( \sqrt{\frac{49}{16}} \).
+
+\subsection*{Propiedad 3: Raíz de una potencia}
+Si \( a \geq 0 \) y \( n \) es un número natural, entonces:
+\[
+\sqrt[n]{a^n} = a
+\]
+
+\textbf{Ejemplo:} Calcular \( \sqrt[3]{8^3} \).
+\[
+\sqrt[3]{8^3} = 8
+\]
+
+\textbf{Ejercicio:} Simplifica \( \sqrt[4]{16^4} \).
+
+\subsection*{Propiedad 4: Multiplicación de raíces con el mismo índice}
+Si \( a \geq 0 \) y \( b \geq 0 \), entonces:
+\[
+\sqrt[n]{a} \cdot \sqrt[n]{b} = \sqrt[n]{a \cdot b}
+\]
+
+\textbf{Ejemplo:} Calcular \( \sqrt[3]{4} \cdot \sqrt[3]{16} \).
+\[
+\sqrt[3]{4} \cdot \sqrt[3]{16} = \sqrt[3]{4 \cdot 16} = \sqrt[3]{64} = 4
+\]
+
+\textbf{Ejercicio:} Simplifica \( \sqrt[3]{5} \cdot \sqrt[3]{25} \).
+
+\subsection*{Propiedad 5: División de raíces con el mismo índice}
+Si \( a \geq 0 \) y \( b > 0 \), entonces:
+\[
+\frac{\sqrt[n]{a}}{\sqrt[n]{b}} = \sqrt[n]{\frac{a}{b}}
+\]
+
+\textbf{Ejemplo:} Calcular \( \frac{\sqrt[4]{81}}{\sqrt[4]{16}} \).
+\[
+\frac{\sqrt[4]{81}}{\sqrt[4]{16}} = \sqrt[4]{\frac{81}{16}} = \sqrt[4]{5.0625}
+\]
+
+\textbf{Ejercicio:} Simplifica \( \frac{\sqrt[5]{32}}{\sqrt[5]{2}} \).
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

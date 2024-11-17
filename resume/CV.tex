@@ -1,0 +1,222 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+\usepackage{ragged2e}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    {\Huge \scshape Vanessa Moya Molina} \\ \vspace{4pt}
+    \href{mailto:vanessa.moya@usach.cl}{\raisebox{-0.2\height}\faEnvelope\  vanessa.moya@usach.cl} ~  
+    {\raisebox{-0.2\height}\faHome\ San Miguel} ~
+    \small \raisebox{-0.1\height}\faPhone\ +569-76881505 ~ 
+    \href{https://www.linkedin.com/in/vanessa-moya-molina-8351a3339/}{\raisebox{-0.2\height}\faLinkedin\ linkedin.com/in/vanessa-moya}
+    \vspace{8pt}
+\end{center}
+%----------Resumen profesional------------
+\section{Resumen Profesional}
+  \resumeSubHeadingListStart 
+    \resumeItemListStart
+      \resumeItem{En este rol, he reforzado mis habilidades de comunicación oral y escrita al explicar conceptos complejos de manera clara y accesible. Además, he desarrollado y diseñado material académico, lo que ha mejorado mis capacidades docentes y mi habilidad para crear contenido educativo. Mi experiencia incluye la orientación y el apoyo continuo a los estudiantes, ayudándoles a comprender y resolver problemas prácticos en el área de electromagnetismo aplicado. Este puesto también ha fortalecido mis habilidades analíticas y de resolución de problemas, al tiempo que he perfeccionado mi capacidad para comunicar conceptos técnicos de manera efectiva. Trabajé en estrecha colaboración con tres compañeros, asumiendo un rol de liderazgo que me permitió mejorar mis habilidades de trabajo en equipo y gestión de grupo, asegurando la colaboración eficiente y el éxito de nuestras tareas.}
+    \resumeItemListEnd
+
+%------------Competencias------------
+\section{Competencias}
+  \resumeSubHeadingListStart
+\resumeSubheading{dfccdc}{dfdf}{dfdf}{dfdf}
+    \resumeItemListStart
+
+      \resumeItem{En este rol, he reforzado mis habilidades de comunicación oral y escrita al explicar conceptos complejos de manera clara y accesible. Además, he desarrollado y diseñado material académico, lo que ha mejorado mis capacidades docentes y mi habilidad para crear contenido educativo. Mi experiencia incluye la orientación y el apoyo continuo a los estudiantes, ayudándoles a comprender y resolver problemas prácticos en el área de electromagnetismo aplicado. Este puesto también ha fortalecido mis habilidades analíticas y de resolución de problemas, al tiempo que he perfeccionado mi capacidad para comunicar conceptos técnicos de manera efectiva. Trabajé en estrecha colaboración con tres compañeros, asumiendo un rol de liderazgo que me permitió mejorar mis habilidades de trabajo en equipo y gestión de grupo, asegurando la colaboración eficiente y el éxito de nuestras tareas.}
+    \resumeItemListEnd
+    \vspace{16pt}
+%-----------EDUCATION-----------
+\section{Educación}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Universidad de Chile}{Marzo 2020 -- Actualidad}
+      {Ingeniería Civil Eléctrica}{Santiago, Chile}
+      
+  \resumeSubHeadingListEnd
+
+%------Acerca de mi-------
+
+%------RELEVANT COURSEWORK-------
+\section{Cursos relevantes}
+    %\resumeSubHeadingListStart
+        \begin{multicols}{3}
+            \begin{itemize}[itemsep=-5pt, parsep=5pt]
+                \item Análisis y diseño de circuitos eléctricos
+                \item Electromagnetismo aplicado
+                \item Algoritmos y estructura de datos
+                \item Conversión de energía y sistemas eléctricos
+            \end{itemize}
+        \end{multicols}
+        \vspace*{2.0\multicolsep}
+    %\resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experiencias}
+  \resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Curso Electromagnetismo aplicado, Universidad de Chile}{Agosto 2024 -- Actualidad}
+    {Auxiliar coordinador}{Santiago, Chile}
+    \resumeItemListStart
+
+      \resumeItem{En este rol, he reforzado mis habilidades de comunicación oral y escrita al explicar conceptos complejos de manera clara y accesible. Además, he desarrollado y diseñado material académico, lo que ha mejorado mis capacidades docentes y mi habilidad para crear contenido educativo. Mi experiencia incluye la orientación y el apoyo continuo a los estudiantes, ayudándoles a comprender y resolver problemas prácticos en el área de electromagnetismo aplicado. Este puesto también ha fortalecido mis habilidades analíticas y de resolución de problemas, al tiempo que he perfeccionado mi capacidad para comunicar conceptos técnicos de manera efectiva. Trabajé en estrecha colaboración con tres compañeros, asumiendo un rol de liderazgo que me permitió mejorar mis habilidades de trabajo en equipo y gestión de grupo, asegurando la colaboración eficiente y el éxito de nuestras tareas.}
+
+    \resumeItemListEnd
+    \vspace{16pt}
+
+    \resumeSubheading
+      {Curso Análisis y diseño de circuitos eléctricos, Universidad de Chile}{Agosto 2024 -- Actualidad}
+      {Ayudante}{Santiago, Chile}
+    \resumeItemListStart
+
+      \resumeItem{En este rol, he desarrollado habilidades avanzadas en la documentación y creación de contenido académico, lo que me ha permitido perfeccionar mi capacidad para transmitir conocimientos de manera clara y efectiva. Además, dentro de mis labores se encuentra la revisión y corrección de evaluaciones, permitiéndome desarrollar la habilidad de retroalimentar de forma constructiva, en pos del aprendizaje y la mejora. La ayudantía me facilitó profundizar en el análisis de circuitos eléctricos, fortaleciendo mi base técnica en esta área y preparándome para expandir mis habilidades en otros campos de la ingeniería eléctrica.}
+
+    \resumeItemListEnd
+    
+  \resumeSubHeadingListEnd
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Habilidades}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Herramientas}{: Excel intermedio, Python, GitHub} \\
+     \textbf{Idiomas}{: Español nativo, Ingles intermedio B2} \\
+     \textbf{Aptitudes}{: Liderazgo. Colaboración. Trabajo en equipo. Comunicación efectiva. Aprendizaje continuo. } \\
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+\iffalse
+%-----------INVOLVEMENT---------------
+\section{Extracurricular}
+    \resumeSubHeadingListStart
+            \resumeItemListStart
+                \resumeItem{Achieved a 4 star fraternity ranking by the Office of Fraternity and Sorority Affairs (highest possible ranking).}
+            \resumeItemListEnd
+        
+    \resumeSubHeadingListEnd
+
+\fi
+\end{document}

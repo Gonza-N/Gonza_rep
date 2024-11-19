@@ -22,11 +22,11 @@
 \noindent
 \begin{questions}
 
-\question[10]{Sea una línea de transmisión visto en la \cref{fig:lt} de impedancia característica $Z_0 = 50\,\Omega$, se le adiciona una linea de transmisión de longitud $l = 5\lambda/12$ en circuito abierto.}
+\question[10]{Sea una línea de transmisión visto en la \cref{fig:lt} de impedancia característica $Z_0 = 40\,\Omega$ e impedacia $Z_L = 50-50j$, se le adiciona una linea de transmisión de longitud $l = 5\lambda/12$ en circuito abierto.}
 \begin{parts}
-  \part[2]{Calcule la impedancia $Z_{ca}$ del circuito.}
+  \part[2]{Calcule la impedancia $Z_{ca}$ del circuito vista a una distancia $\frac{5\lambda}{12}$.}
   \part[2]{Calcule la impedancia equivalente en la linea de transmisión.}
-  \part[4]{Determine las distancias $l$ y $l_s$ necesarias para adaptar la línea de transmisión utilizando la Carta de Smith, implementando un stub en cortocircuito y otro en circuito abierto.}
+  \part[4]{Determine la distancia $l$ con tal de adaptar la parte real de la impedancia equivalente y $l_s$ con tal de adaptar la parte imaginaria de la linea de transmisión tanto en corto circuito ($l_{s}^{cc}$) como en circuito abierto ($l_{s}^{ca}$).}
   \part[2]{Explique detalladamente el proceso de adaptación.}
 \end{parts}
 
@@ -36,13 +36,24 @@
       % Línea de transmisión
       \draw[thick] (-4,1) -- (4.5,1);  % Línea superior
       \draw[thick] (-4,-1) -- (4.5,-1); % Línea inferior
-      \draw[thick] (2,1.2) -- (4.5,1.2); % Línea derecha
+
+      % Línea de transmisión añadida
+
+      \draw[thick] (4.5,1) -- (6.6,2.6);  % Línea superior
+      \draw[thick] (4.5,-1) -- (6.6,0.6); % Línea inferior
+
 
 
       %stub
       \draw[thick] (-2.5,1) -- (1.5,-2); % Línea vertical
       \draw[thick] (-2.5,-1) -- (-1.1,-2); % Línea vertical
-      %\draw[thick] (-0.9,-2) -- (1,-2); % Línea izquierda
+      
+      %distancia l
+
+      \draw[thick] (-2.4,1.2) -- (0.9,1.2) node[midway, above] {$l$}; % Línea vertical
+      \draw[thick] (-2.4,1.1) -- (-2.4,1.3); % Línea izquierda
+      \draw[thick] (0.9,1.1) -- (0.9,1.3); % Línea izquierda
+
 
       %distancia ls
 
@@ -53,29 +64,29 @@
       \draw[dashed] (-1.1,-2) -- (1.5,-2); % Línea punteada
 
 
-      % flecha longitud de onda
-      \draw[thick] (2,1.1) -- (2,1.3); % Línea izquierda
-      \draw[thick] (4.5,1.1) -- (4.5,1.3); % Línea izquierda
+      % flecha l circuito abierto
+      \draw[thick] (6.4,2.5) -- (6.2,2.7); % Línea izquierda
+      \draw[thick] (4.6,1.1) -- (4.4,1.3); % Línea izquierda
+      \draw[thick] (4.5,1.2) -- (6.3,2.6) node[midway, rotate=40, above] {$l_{ca} = \frac{5\lambda}{12}$}; % Línea derecha
 
       
-
+      %impedanciia Z_l
       \draw[thick] (1,1) -- (1,0.5); % Línea vertical
       \draw[thick] (1,-1) -- (1,-0.5); % Línea vertical
       \draw (1.5,0.5) rectangle (0.5,-0.5); % Rectángulo
       \node at (1,0) {$Z_L$}; % Etiqueta dentro del rectángulo
 
       % flecha impedancia circuito abierto
-      \draw[thick] (2,-1.2) -- (2,-0.8); % Línea derecha
-      \draw[->] (2,-0.8) -- (3.5,-0.8);
+      \draw (4.5,-0.8) -- (4.7,-1); % Línea derecha
+      \draw[->] (4.5,-0.8) -- (6,0.4) node[midway, rotate=45, above] {$Z_{ca}$};
 
       % circuito abierto 
-      \filldraw[black] (4.5,-1) circle (2pt);
-      \filldraw[black] (4.5,1) circle (2pt);
+      \filldraw[black] (6.6,2.6) circle (2pt);
+      \filldraw[black] (6.6,0.6) circle (2pt);
 
       \node at (-2.7,0) {$Z_0$};
-      \node at (3.25,0) {$Z_0$};
-      \node at (3.25,1.6) {$l = \frac{5\lambda}{12}$};
-      \node at (2,-0.5) {$Z_{ca}$};
+      \node at (3,0) {$Z_0$};
+
 
     \end{tikzpicture}
     \caption{Linea de transmisión en circuito abierto.}
@@ -95,6 +106,30 @@
   &= \frac{j \sqrt{3}Z_{0}}{3}
 \end{align}
 \part{La impedancia equivalente en la linea de transmisión será la impedancia de circuito abierto en paralelo con la impedancia de la carga $Z_{eq} = Z_{ca}//Z_{l}$.}
+En este caso se tiene que $Z_{l} = 50-50j$ y $Z_{ca} = j \sqrt{3}Z_{0}/3$ por lo que para conseguir $Z_{eq}$ se tiene que:
+\begin{equation}
+  Z_{eq} = \frac{Z_{ca}Z_{L}}{Z_{ca}+Z_{L}} = \frac{j \sqrt{3}Z_{0}/3(50-50j)}{j \sqrt{3}Z_{0}/3+50-50j}
+\end{equation}
+Esto nos dará como resultado
+\begin{equation}
+  Z_{eq} = 83.47 + 37.15j
+\end{equation}
+\part{Luego normalizando la impedancia se tiene $\frac{Z_{eq}}{40}$}
+\begin{equation}
+  Z_{eq} = 2.08 + 0.93j
+\end{equation}
+Luego calculando la admitancia para utilizar la carta smith se tiene:
+\begin{equation}
+  Y_{eq} = \frac{1}{Z_{eq}} = 0.4 - 0.2j
+\end{equation}
+Por lo que en la carta de smith se tiene que la parte real de la admitancia es $0.4$ y la parte imaginaria es $-0.2$ por lo que se tiene utilizando la carta smith conseguimos los siguientes valores para $l$, $l_s^{cc}$ y $l_s^{ca}$.
+\begin{align}
+  l &= 0.2\lambda\\
+  l_s^{cc} &= 0.125\lambda\\
+  l_s^{ca} &= 0.0.375\lambda
+\end{align}
+Recordar que cada uno de estos valores se obtiene de la carta de smith y corresponden a valores aproximados.
+
 
 
 

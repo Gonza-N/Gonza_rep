@@ -26,7 +26,7 @@
 \begin{parts}
   \part[2]{Calcule la impedancia $Z_{ca}$ del circuito vista a una distancia $\frac{5\lambda}{12}$.}
   \part[2]{Calcule la impedancia equivalente en la linea de transmisión.}
-  \part[4]{Determine la distancia $l$ con tal de adaptar la parte real de la admitancia equivalente y $l_s$ con tal de adaptar la parte imaginaria de la linea de transmisión tanto en corto circuito ($l_{s}^{cc}$) como en circuito abierto ($l_{s}^{ca}$).}
+  \part[4]{Determine la distancia $l$ con tal de adaptar la parte real de la admitancia equivalente y la distancia $l_s$ con tal de adaptar la parte imaginaria de la linea de transmisión tanto en corto circuito ($l_{s}^{cc}$) como en circuito abierto ($l_{s}^{ca}$).}
   \part[2]{Explique detalladamente el proceso de adaptación.}
 \end{parts}
 
@@ -34,60 +34,41 @@
     \centering
     \begin{tikzpicture}
       % Línea de transmisión
-      \draw[thick] (-4,1) -- (4.5,1);  % Línea superior
-      \draw[thick] (-4,-1) -- (4.5,-1); % Línea inferior
+      \draw[thick] (-4,1) -- (4.5,1); 
+      \draw[thick] (-4,-1) -- (4.5,-1);
 
       % Línea de transmisión añadida
-
-      \draw[thick] (4.5,1) -- (6.6,2.6);  % Línea superior
-      \draw[thick] (4.5,-1) -- (6.6,0.6); % Línea inferior
-
-
+      \draw[thick] (4.5,1) -- (6.6,2.6); 
+      \draw[thick] (4.5,-1) -- (6.6,0.6);
 
       %stub
-      \draw[thick] (-2.5,1) -- (1.5,-2); % Línea vertical
-      \draw[thick] (-2.5,-1) -- (-1.1,-2); % Línea vertical
-      
-      %distancia l
+      \draw[thick] (-2.5,1) -- (1.5,-2);
+      \draw[thick] (-2.5,-1) -- (-1.1,-2);
 
-      \draw[thick] (-2.4,1.2) -- (0.9,1.2) node[midway, above] {$l$}; % Línea vertical
-      \draw[thick] (-2.4,1.1) -- (-2.4,1.3); % Línea izquierda
-      \draw[thick] (0.9,1.1) -- (0.9,1.3); % Línea izquierda
+      \draw[|<->|] (-2.5,1.4) -- (1,1.4) node[midway, fill=white] {$l$};
 
-
-      %distancia ls
-
-      \draw[thick] (-2.5,-1.2) -- (-1.4,-2); % Línea vertical
-      \draw[thick] (-2.53,-1.25) -- (-2.45,-1.15); % Línea izquierda
-      \draw[thick] (-1.45,-2.05) -- (-1.37,-1.95); % Línea derecha
-      \node[rotate=-22] at (-2.15,-1.85) {$l_s$}; % Rotación
-      \draw[dashed] (-1.1,-2) -- (1.5,-2); % Línea punteada
-
-
-      % flecha l circuito abierto
-      \draw[thick] (6.4,2.5) -- (6.2,2.7); % Línea izquierda
-      \draw[thick] (4.6,1.1) -- (4.4,1.3); % Línea izquierda
-      \draw[thick] (4.5,1.2) -- (6.3,2.6) node[midway, rotate=40, above] {$l_{ca} = \frac{5\lambda}{12}$}; % Línea derecha
-
-      
+      \draw[|<->|] (-2.5-.3,-1-.3) -- (-1.1-.3,-2-.3) node[midway, rotate=-22, fill=white] {$l_s$};
+      \draw[dashed] (-1.1,-2) -- (1.5,-2);
+        
       %impedanciia Z_l
-      \draw[thick] (1,1) -- (1,0.5); % Línea vertical
-      \draw[thick] (1,-1) -- (1,-0.5); % Línea vertical
-      \draw (1.5,0.5) rectangle (0.5,-0.5); % Rectángulo
-      \node at (1,0) {$Z_L$}; % Etiqueta dentro del rectángulo
+      \node[draw] (ZL) at (1,0) {$Z_l$};
+      \draw[thick] (1,1) -- (ZL.north);
+      \draw[thick] (1,-1) -- (ZL.south);
 
-      % flecha impedancia circuito abierto
-      \draw (4.5,-0.8) -- (4.7,-1); % Línea derecha
-      \draw[->] (4.5,-0.8) -- (6,0.4) node[midway, rotate=45, above] {$Z_{ca}$};
+      % \draw (4.5,-0.8) -- (4.7,-1); % Línea derecha
+      \draw[->] (4.5,-1+.4) -- ($(6.6,0.6)!.5!(4.5, -1) + (0,.4)$) node[midway, rotate={atan((2.9 - 1.3) / (6.3 - 4.2))}, above] {$Z_\text{ca}$};
+
+      \draw (4.5,-1+.4) -- ++ (0, -1);
 
       % circuito abierto 
       \filldraw[black] (6.6,2.6) circle (2pt);
       \filldraw[black] (6.6,0.6) circle (2pt);
 
+      \draw[|<->|] (4.5-.3,1+.3) -- (6.6-.3,2.6+.3) node[midway, rotate=40, fill=white] {$l_{ca} = \frac{5\lambda}{12}$};
+      
       \node at (-2.7,0) {$Z_0$};
       \node at (3,0) {$Z_0$};
-
-
+  
     \end{tikzpicture}
     \caption{Linea de transmisión en circuito abierto.}
     \label{fig:lt}

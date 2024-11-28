@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+
+\section*{Demostración de que el Filtro Adaptado Maximiza la SNR}
+
+El filtro adaptado (matched filter) está diseñado para maximizar la SNR en la salida al final del período de símbolo \( T \). Consideremos un sistema donde se transmite un símbolo \( s(t) \) en presencia de ruido blanco gaussiano \( n(t) \). La señal recibida \( r(t) \) es:
+
+\begin{equation}
+r(t) = s(t) + n(t)
+\end{equation}
+
+El filtro adaptado tiene una respuesta impulsional \( h(t) \) que es una versión invertida en el tiempo de la señal transmitida \( s(t) \):
+
+\begin{equation}
+h(t) = s(T - t)
+\end{equation}
+
+La salida del filtro adaptado en \( t = T \) es:
+
+\begin{equation}
+y(T) = \int_{0}^{T} r(\tau) h(T - \tau) d\tau = \int_{0}^{T} (s(\tau) + n(\tau)) s(\tau) d\tau
+\end{equation}
+
+Descomponiendo:
+
+\begin{equation}
+y(T) = \int_{0}^{T} s(\tau) s(\tau) d\tau + \int_{0}^{T} n(\tau) s(\tau) d\tau = E_s + n_s
+\end{equation}
+
+Donde:
+
+\begin{equation}
+E_s = \int_{0}^{T} [s(\tau)]^2 d\tau
+\end{equation}
+
+Y \( n_s \) es el ruido filtrado:
+
+\begin{equation}
+n_s = \int_{0}^{T} n(\tau) s(\tau) d\tau
+\end{equation}
+
+La varianza del ruido en la salida del filtro es:
+
+\begin{equation}
+\sigma_n^2 = \mathbb{E}[n_s^2] = \int_{0}^{T} \int_{0}^{T} \mathbb{E}[n(\tau) n(\lambda)] s(\tau) s(\lambda) d\tau d\lambda
+\end{equation}
+
+Dado que \( n(t) \) es ruido blanco gaussiano con densidad espectral de potencia \( N_0/2 \):
+
+\begin{equation}
+\mathbb{E}[n(\tau) n(\lambda)] = \frac{N_0}{2} \delta(\tau - \lambda)
+\end{equation}
+
+Donde \( \delta \) es la función delta de Dirac. Entonces:
+
+\begin{equation}
+\sigma_n^2 = \frac{N_0}{2} \int_{0}^{T} [s(\tau)]^2 d\tau = \frac{N_0}{2} E_s
+\end{equation}
+
+La potencia del ruido en la salida es:
+
+\begin{equation}
+N = \sigma_n^2 = \frac{N_0}{2} E_s
+\end{equation}
+
+Por lo tanto, la SNR en la salida del filtro adaptado es:
+
+\begin{equation}
+\text{SNR} = \frac{\text{Potencia de la señal}}{\text{Potencia del ruido}} = \frac{E_s^2}{\frac{N_0}{2} E_s} = \frac{2 E_s}{N_0}
+\end{equation}
+
+Esto demuestra que la SNR se maximiza al final del período de símbolo \( T \).
+
+\end{document}

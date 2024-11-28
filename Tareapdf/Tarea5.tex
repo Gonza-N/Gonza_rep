@@ -1,0 +1,86 @@
+\documentclass[
+  11pt,
+  letterpaper,
+  % addpoints,
+  answers
+]{exam}
+
+\usepackage{../tarea}
+
+\begin{document}
+\begin{minipage}{0.42\textwidth}
+    \includegraphics[width=\textwidth]{../fcfm_die}
+\end{minipage}
+\begin{minipage}{0.53\textwidth}
+\begin{center} 
+\large\textbf{ Principios de Comunicaciones} (EL4112) \\
+\large\textbf{Tarea 4} \\
+\normalsize Prof.~Cesar Azurdia\\
+\normalsize Prof Aux.~Sebastián Arancibia, Fernanda Borja, Diego Castillo\\
+\normalsize Ayudantes: Cristóbal Allendes, Ammi Beltrán, Gonzalo Alegría.
+\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+\noindent
+\vspace{.85cm}
+\begin{questions}
+\question{Demuestre de forma analitica y grafica:}
+\begin{solution}
+  Un matched filter es un tipo de filtro que maximizala relación entre la señal y el ruido (SNR) para detectar señales en presencia de ruido. Luego podemos definir su funcion de transferencia H como:
+  \begin{equation}
+  h(t) = s*(T-t)
+  \end{equation}
+  Al analizar la ecuación podemos notar que el filtro es la versión invertida y conjugada de la señal transmitida s(t).
+  Luego podemos definir tambien la relación esntre la señal transmitida y la energía como:
+  \begin{equation}
+  E = \int_{0}^{T} |s(t)|^2 dt
+  \end{equation}
+  y la señal recibida como:
+  \begin{equation}
+  r(t) = s(t) + n(t)
+  \end{equation}
+  con n(t) el ruido blanco gaussiano.
+  Luego la salida del filtro es:
+  \begin{align}
+    y(T) &= \int_{-\infty}^{\infty} r(\tau) h(T - \tau) \, d\tau = \int_0^T r(\tau) s(\tau) \, d\tau. \\
+    y(T) &= \int_0^T s(\tau) s(\tau) \, d\tau + \int_0^T n(\tau) s(\tau) \, d\tau = E_s + n_s, \\
+    n_s &= \int_0^T n(\tau) s(\tau) \, d\tau.
+    \end{align}
+
+  Observando el resultado de estas ecuciones notamos que $E_s$ es la energía de la señal transmitida y $n_s$ es la energía del ruido en la señal recibida. Luego hablando de la potencia de la señal y el ruido tenemos:
+
+  \begin{equation}
+    S = [E_s]^2
+  \end{equation}
+  Donde la potencia del ruido la caracterizaremos como una variable aleatoria con media 0 y varianza $\sigma^2$ de la siguiente forma:
+  \begin{align}
+    \sigma_n^2 = \mathbb{E}[n_s^2] = \int_0^T \int_0^T \mathbb{E}[n(\tau) n(\lambda)] s(\tau) s(\lambda) \, d\tau \, d\lambda.
+  \end{align}
+  Luego podemos escribir la función de autocorrelación de n(t) teniendo en cuenta la densidad espectral de la potencia $N_0/2$:
+  \begin{align}
+    E[n(\tau)n(\lambda)] = \frac{N_0}{2} \delta(\tau-\lambda).
+    \end{align}
+  Luego podemos escribir la varianza del ruido como:
+  \begin{align}
+    \sigma_n^2 = \frac{N_0}{2} \int_0^T [s(\tau)]^2 \, d\tau. = \frac{N_0 E_s}{2}
+  \end{align}
+Con esto podemos deducir que la potencia del ruido en la salida es 
+\begin{align}
+  N = \sigma_n^2 = \frac{N_0 E_s}{2}
+\end{align}
+Luego hablando sobre la SNR podemos definirla como el cociente entre la potencia de la señal y la potencia del ruido:
+\begin{align}
+  SNR = \frac{S}{N} = \frac{E_s^2}{\frac{N_0 E_s}{2}} = \frac{2E_s}{N_0}
+\end{align}
+Luego simplificando  y reordenando la ecuación obtenemos:
+\begin{align}
+  SNR = \frac{E_s}{N_{0}/2}
+\end{align}
+Con esto queda deducida analiticamente la relación entre la señal y el ruido en un matched filter.
+
+\end{solution}
+
+
+\end{questions}
+\end{document}

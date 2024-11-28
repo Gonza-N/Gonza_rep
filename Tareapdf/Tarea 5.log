@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.11)  27 NOV 2024 22:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.11)  27 NOV 2024 22:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/tarea4.tex
-(c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/tarea4.tex
+**"c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/Tarea 5.tex"
+(c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/Tarea 5.tex
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
 (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/exam\exam.cls
@@ -803,8 +803,8 @@ Package translations Info: No language package found. I am going to use `english
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count387
 \l__pdf_internal_box=\box116
-) (tarea4.aux)
-\openout1 = `tarea4.aux'.
+) (Tarea 5.aux)
+\openout1 = `"Tarea 5.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
@@ -900,70 +900,44 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 13.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
+c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/Tarea 5.tex:32: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 \end{questions}
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+
 [1
 
 {C:/Users/Gonzalo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../fcfm_die.pdf>]
-Overfull \hbox (6.97269pt too wide) in paragraph at lines 87--88
-[]\OT1/cmr/m/n/10.95 Calcule la auto-informaci^^Son de los men-sajes $\OML/cmm/m/it/10.95 X \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 A; C; E; G\OMS/cmsy/m/n/10.95 g$\OT1/cmr/m/n/10.95 , $\OML/cmm/m/it/10.95 W \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 B; D; F; H\OMS/cmsy/m/n/10.95 g$ \OT1/cmr/m/n/10.95 y $\OML/cmm/m/it/10.95 Z \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 A; B; F; G; H\OMS/cmsy/m/n/10.95 g$\OT1/cmr/m/n/10.95 .
- []
+This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
 
+Class exam Warning: Point totals have changed. Rerun to get point totals right.
 
-
-[2]
-
-[3]
-
-[4]
-Overfull \hbox (1.55188pt too wide) in paragraph at lines 199--200
-[]\OT1/cmr/m/n/10.95 A12.08%, B1.42%, C4.68%, D5.86%, E13.68%, F0.69%, G1.01%, H0.70%, I6.25%, J0.44%, K0.02%,
- []
-
-
-Overfull \hbox (78.57198pt too wide) in paragraph at lines 273--273
- []        \OT1/cmtt/m/n/10.95 return -sum(np.log2(probabilidades[letra.upper()]) for letra in palabra) / len(palabra)[] 
- []
-
-
-Overfull \hbox (21.0851pt too wide) in paragraph at lines 275--275
- []    \OT1/cmtt/m/n/10.95 info_palabras = {palabra: calcular_info_palabra(palabra) for palabra in palabras}[] 
- []
-
-
-
-[5]
-
-[6]
-Overfull \hbox (55.57722pt too wide) in paragraph at lines 304--304
- []    \OT1/cmtt/m/n/10.95 'c': 0.02, 'd': 0.02, 'f': 0.02, 'l': 0.02, 'm': 0.02, 'p': 0.02, 'u': 0.02, 'y': 0.02,[] 
- []
-
-
-Overfull \hbox (113.0641pt too wide) in paragraph at lines 305--305
- []    \OT1/cmtt/m/n/10.95 'b': 0.01, 'g': 0.01, 'j': 0.01, 'k': 0.01, 'q': 0.01, 'v': 0.01, 'w': 0.01, 'x': 0.01, 'z': 0.01[] 
- []
-
-
-
-[7]
-This exam contains 7 questions with 10 parts, 0 subparts, and 0 subsubparts.
-(tarea4.aux)
+(Tarea 5.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 57883 strings out of 473898
- 1576321 string characters out of 5725535
- 2356485 words of memory out of 5000000
- 80085 multiletter control sequences out of 15000+600000
- 565934 words of font info for 67 fonts, out of 8000000 for 9000
+ 57755 strings out of 473898
+ 1574284 string characters out of 5725535
+ 2339488 words of memory out of 5000000
+ 79961 multiletter control sequences out of 15000+600000
+ 564771 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,9n,101p,867b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Gonzalo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on tarea4.pdf (7 pages, 259135 bytes).
+ 99i,6n,101p,784b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on "Tarea 5.pdf" (1 page, 106546 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
+ 27 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

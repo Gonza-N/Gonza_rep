@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1732762226.53051 "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/Tarea5.tex" "Tarea5.pdf" "Tarea5" 1732762228.76258 0
+["pdflatex"] 1732762757.42206 "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/Tarea5.tex" "Tarea5.pdf" "Tarea5" 1732762760.02258 0
   "../fcfm_die.pdf" 1723410588 68372 58fca911fad9f2323ab3bd83506d01cc ""
   "../tarea.sty" 1732666147 2021 de7f72d333948d71fc52589d506aa750 ""
   "C:/Users/Gonzalo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1731874578 82216 ba360cc5ecac06b3e0cd0381ad6fcbaf ""
@@ -209,6 +209,7 @@
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1623003186 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/etoolbox/etoolbox.sty" 1601897756 46845 3b58f70c6e861a13d927bff09d35ecbc ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/exam/exam.cls" 1689583161 292471 cf61070d137ac4d18fa1ab3aa514381e ""
+  "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/float/float.sty" 1469023953 6916 16d2656a1984957e674b149555f1ea1d ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.cfg" 1578053545 1104 7ac475a4e3466b0b43e138e9356bda83 ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.sty" 1578053545 42759 9cf6c5257b1bc7af01a58859749dd37a ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/color.cfg" 1465894292 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
@@ -266,9 +267,10 @@
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/ulem/ulem.sty" 1578651445 15682 94f55b803e160cf7fb6e4d77d07cfe1d ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/was/upgreek.sty" 1665850770 5794 9054e31be15d93f1e6bd28cca2b6643f ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "Tarea5.aux" 1732762228 529 0c5e5786312bc00b99b6ea2bdf14e9d4 "pdflatex"
-  "Tarea5.tex" 1732762225 3320 67dd923f389b94bfdaabc9df50d569ed ""
-  "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/Tarea5.tex" 1732762225 3320 67dd923f389b94bfdaabc9df50d569ed ""
+  "Tarea5.aux" 1732762759 728 0e28e50f60ca56783a9f201b4a689de8 "pdflatex"
+  "Tarea5.tex" 1732762756 4361 dc70bc7785d0d76569dfd5e1c40c658c ""
+  "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/Tareapdf/Tarea5.tex" 1732762756 4361 dc70bc7785d0d76569dfd5e1c40c658c ""
+  "hola_hola.png" 1732762396 138563 17fb54ef7c9955c34a5ebd6a145eca87 ""
   (generated)
   "Tarea5.aux"
   "Tarea5.log"

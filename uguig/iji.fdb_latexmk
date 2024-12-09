@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1732082044.91687 "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/uguig/iji.tex" "iji.pdf" "iji" 1732082047.47809 0
+["pdflatex"] 1732849579.82625 "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/uguig/iji.tex" "iji.pdf" "iji" 1732849582.24784 0
   "../fcfm_die.pdf" 1723410588 68372 58fca911fad9f2323ab3bd83506d01cc ""
-  "../tarea.sty" 1731723586 1706 f8d736be644ee4c4ed0c9043d21d5445 ""
+  "../tarea.sty" 1732666147 2021 de7f72d333948d71fc52589d506aa750 ""
   "C:/Users/Gonzalo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1731874578 82216 ba360cc5ecac06b3e0cd0381ad6fcbaf ""
   "C:/Users/Gonzalo/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1723411077 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/Gonzalo/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1723411077 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -264,7 +264,7 @@
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/was/upgreek.sty" 1665850770 5794 9054e31be15d93f1e6bd28cca2b6643f ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/uguig/iji.tex" 1732082043 4594 15a05739563b91e15cf4285b4123afbb ""
-  "iji.aux" 1732082047 1498 ba117287c83f92b942b785aecb855093 "pdflatex"
+  "iji.aux" 1732849581 1498 ba117287c83f92b942b785aecb855093 "pdflatex"
   "iji.tex" 1732082043 4594 15a05739563b91e15cf4285b4123afbb ""
   (generated)
   "iji.aux"

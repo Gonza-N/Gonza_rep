@@ -6,6 +6,8 @@
 ]{exam}
 
 \usepackage{../tarea}
+\usepackage{graphicx}
+\usepackage{float}
 
 \begin{document}
 \begin{minipage}{0.42\textwidth}
@@ -77,7 +79,18 @@ Luego simplificando  y reordenando la ecuación obtenemos:
 \begin{align}
   SNR = \frac{E_s}{N_{0}/2}
 \end{align}
-Con esto queda deducida analiticamente la relación entre la señal y el ruido en un matched filter.
+Con esto queda deducida analiticamente la relación entre la señal y el ruido en un matched filter. \\
+
+La siguiente figura muestra la relación entre la potencia de la señal, la potencia del ruido y la energía del símbolo en un sistema de comunicación digital. En este sistema, la potencia de la señal \( S \) y la potencia del ruido \( N \) están relacionadas con la energía del símbolo \( E_s \) y la densidad espectral del ruido \( N_0 \). El gráfico visualiza cómo se comporta la relación señal-ruido (SNR) al cambiar la potencia de la señal y el ruido, lo que nos permite obtener la expresión máxima de la SNR cuando se utiliza un filtro optimizado, como el “matched filter”.
+
+\begin{figure}[H] % [H] requiere el paquete float, para colocar la figura exactamente aquí
+  \centering
+  \includegraphics[width=\textwidth]{hola_hola.png}
+  \label{fig:SNR}
+\end{figure}
+
+Como se muestra en la \cref{fig:SNR}, la relación entre las diferentes variables se establece para maximizar la SNR, lo cual es crucial para mejorar el rendimiento del sistema de comunicación.
+
 
 \end{solution}
 

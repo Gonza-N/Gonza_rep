@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.11)  27 NOV 2024 23:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.11)  27 NOV 2024 23:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -797,42 +797,49 @@ Package siunitx Info: Option "separate-uncertainty" has been deprecated in
  (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/cleveref\cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
 Package cleveref Info: `amsthm' support loaded on input line 3026.
-))
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 10.
+)) (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count387
+\float@exts=\toks60
+\float@box=\box116
+\@float@everytoks=\toks61
+\@floatcapt=\box117
+)
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 12.
  (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count387
-\l__pdf_internal_box=\box116
+\l__color_backend_stack_int=\count388
+\l__pdf_internal_box=\box118
 ) (Tarea5.aux)
 \openout1 = `Tarea5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
  (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count388
+\scratchcounter=\count389
 \scratchdimen=\dimen348
-\scratchbox=\box117
-\nofMPsegments=\count389
-\nofMParguments=\count390
-\everyMPshowfont=\toks60
-\MPscratchCnt=\count391
+\scratchbox=\box119
+\nofMPsegments=\count390
+\nofMParguments=\count391
+\everyMPshowfont=\toks62
+\MPscratchCnt=\count392
 \MPscratchDim=\dimen349
-\MPnumerator=\count392
-\makeMPintoPDFobject=\count393
-\everyMPtoPDFconversion=\toks61
+\MPnumerator=\count393
+\makeMPintoPDFobject=\count394
+\everyMPtoPDFconversion=\toks63
 ) (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -840,6 +847,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 *geometry* driver: auto-detecting
@@ -881,30 +889,50 @@ Package pgfplots notification 'compat/show suggested version=true': you might be
 (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 10.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 12.
 <../fcfm_die.pdf, id=4, 737.75626pt x 238.8925pt>
 File: ../fcfm_die.pdf Graphic file (type pdf)
 <use ../fcfm_die.pdf>
-Package pdftex.def Info: ../fcfm_die.pdf  used on input line 12.
+Package pdftex.def Info: ../fcfm_die.pdf  used on input line 14.
 (pdftex.def)             Requested size: 222.15247pt x 71.93439pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
  (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
  (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 13.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 15.
  (C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
+Underfull \hbox (badness 10000) in paragraph at lines 81--83
+
+ []
+
+<hola_hola.png, id=5, 859.2903pt x 570.2103pt>
+File: hola_hola.png Graphic file (type png)
+<use hola_hola.png>
+Package pdftex.def Info: hola_hola.png  used on input line 88.
+(pdftex.def)             Requested size: 490.67007pt x 325.59749pt.
+
 
 [1
 
 {C:/Users/Gonzalo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../fcfm_die.pdf>]
+Underfull \vbox (badness 10000) detected at line 95
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 95
+ []
+
+
 
 [2]
+
+[3 <./hola_hola.png>]
 This exam contains 1 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (Tarea5.aux)
  ***********
@@ -913,17 +941,17 @@ L3 programming layer <2024-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 57772 strings out of 473898
- 1574607 string characters out of 5725535
- 2351485 words of memory out of 5000000
- 79977 multiletter control sequences out of 15000+600000
+ 57844 strings out of 473898
+ 1575855 string characters out of 5725535
+ 2353485 words of memory out of 5000000
+ 80045 multiletter control sequences out of 15000+600000
  565079 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,10n,101p,781b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,10n,101p,802b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Tarea5.pdf (2 pages, 205251 bytes).
+Output written on Tarea5.pdf (3 pages, 318923 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
+ 86 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -371,6 +371,8 @@ INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\cleveref\cleveref.sty
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\cleveref\cleveref.sty
+INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
+INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT .\Tarea5.aux
@@ -429,6 +431,13 @@ INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\e
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT .\hola_hola.png
+INPUT .\hola_hola.png
+INPUT .\hola_hola.png
+INPUT .\hola_hola.png
+INPUT .\hola_hola.png
+INPUT .\hola_hola.png
+INPUT .\hola_hola.png
 INPUT C:\Users\Gonzalo\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT Tarea5.aux
 INPUT C:\Users\Gonzalo\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb

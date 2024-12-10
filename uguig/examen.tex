@@ -1,0 +1,80 @@
+\documentclass[
+  11pt,
+  letterpaper,
+  % addpoints,
+  answers
+]{exam}
+
+\usepackage{../tarea}
+
+\begin{document}
+\begin{minipage}{0.42\textwidth}
+    \includegraphics[width=\textwidth]{../fcfm_die}
+\end{minipage}
+\begin{minipage}{0.53\textwidth}
+\begin{center} 
+\large\textbf{} \\
+\normalsize Prof.~Gonzalo Narváez.
+\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+\noindent
+\begin{questions}
+
+
+
+\question \label{q:lt} Se tiene la siguiente línea de transmisión con distintos tipos de adaptadores, como se ve en la \cref{fig:transmission_line}. Todo el sistema tiene una impedancia característica de $Z_{1} \neq 0$. Se quiere adaptar la línea desde el puerto 1. Para esto:
+
+  \begin{parts}
+      \part[3]{ \label{prob:lt_a} Demuestre la formula para el adaptador $\frac{\lambda}{4}$.}
+
+      \part[3]{Demuestre la formula para el adaptador $\frac{\lambda}{2}$}
+
+      \part[4] Obtenga $Z_{in}$ adaptando completamente la LT de la \cref{fig:transmission_line}.  
+  \end{parts}
+
+  \begin{center}
+    \begin{tikzpicture}
+      \edef\width{1.5};
+      \edef\wavel{19};
+
+      \edef\angle{50};
+      \coordinate (O) at (0, 0);
+      \coordinate (A) at (0, {\width/2});
+      \coordinate (B) at (0, -{\width/2});
+
+      \draw[] (A) -- ++ ({\wavel/2}, 0) node[circle, draw, fill=black, inner sep=1pt] {} coordinate (Aext) -- ++ ({\wavel/4}, 0) coordinate (A1);
+      \draw[] (B) -- ++ ({\wavel/2}, 0) node[circle, draw, fill=black, inner sep=1pt] {} coordinate (Bext) -- ++ ({\wavel/4}, 0) coordinate (A2);
+
+      \node[red, draw] (Z2) at ($(A1)!0.5!(A2)$) {$Z_2$};
+      \draw[red, thick] (A1) -- (Z2.north);
+      \draw[red, thick] (A2) -- (Z2.south);
+      \draw[red, thick] (A1) -- (Aext);
+      \draw[red, thick] (A2) -- (Bext);
+    
+      
+
+      \draw[dashed] (Aext) -- (Bext) node[midway, fill=white] {$Z_\text{in}^\prime$};
+
+      \draw[<->] ($(A) + (0, .5)$) -- ($(Aext) + (0, .5)$) node[midway,fill=white] {$\lambda/2$};
+      \draw[<->] ($(Aext) + (0, .5)$) -- ($(A1) + (0, .5)$) node[pos=.5,fill=white] {$\lambda/4$};
+    
+
+
+      \draw[stealth-] ($(A)!.5!(B)$) -| ++ (-.5, -1) node[below] {$Z_\text{in}$};
+
+      \node[below] at (A) {Puerto 1};
+    \end{tikzpicture}
+    \captionof{figure}{Línea de transmisión correspondiente a \cref{q:lt}. Todo el sistema posee una impedancia intrínseca de $Z_1$. Se definen una zona en {\color{red}\textbf{rojo}}, con largo $\lambda/4$ y carga $Z_2  \neq 0$ y una zona en negro con largo $\lambda /2$.}
+    \label{fig:transmission_line}
+  \end{center}
+
+
+
+
+
+
+
+\end{questions}
+\end{document}

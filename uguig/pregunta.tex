@@ -24,7 +24,7 @@
 
 
 
-\question Resuelva el siguiente problema utilizando la carta Smith. Se tiene una línea de transmisión vista en la \cref{fig:lt}, de impedancia característica $Z_c = \qty{80}{\ohm}$ y una carga $Z_l = \complexqty{70+40j}{\ohm}$.
+\question Resuelva el siguiente problema utilizando la carta Smith. Se tiene una línea de transmisión vista en la \cref{fig:lt}, de impedancia característica $Z_c = \qty{50}{\ohm}$ y una carga $Z_l = \complexqty{25+15j}{\ohm}$.
     
     \begin{center}
       \begin{tikzpicture}
@@ -48,7 +48,7 @@
         \draw[very thick] (3,-1) -- (ZL.south);
 
         
-        \node at (-2.7,0) {$Z_0$};
+        \node at (-2.7,0) {$Z_c$};
       
     
       \end{tikzpicture}
@@ -58,18 +58,19 @@
 
     Para adaptar la línea determine:
     \begin{parts}
-      \part[3]{La distancia $l$ con tal de adaptar la parte real de la admitancia.}
+      \part[2]{La distancia $l$ con tal de adaptar la parte real de la admitancia.}
   
       \part[4]{La distancia $l_s$ con tal de adaptar la parte imaginaria de la línea de transmisión tanto en corto circuito ($l_\text{s}^\text{cc}$) como en circuito abierto ($l_\text{s}^\text{ca}$).}
   
       \part[3]{Explique el proceso de adaptación.}
+      \part[1]{¿Qué sucede si, luego de encontrar las distancias $l$ y $l_s$ se desea añadir un adaptador $\lambda /2$ entre la carga ($Z_l$) y la distancia $l$?¿La forma de resolver el problema cambia?}
     \end{parts}
     
     \begin{solution}
       \begin{parts}
-        \part{Dado que la impedancia viene dada por $Z_{l} = \complexqty{70 +j40}{\ohm}$, luego la impedancia normalizada es $z_{l}= \complexnum{0.875 +0.5j}$, mientras que su admitancia normalizada vendrá dada por $y_{l} =\complexnum{0.86-0.5j}$, extendiendo los valores de $y_{l}$ a los extremos de la carta smith se obtiene un valor aproximado de $0.375\lambda$, una vez formada la circunferencia unitaria se extiende la línea en la intersección obteniendo $\num{0.145}\lambda$, con lo que finalmente se obtiene una admitancia de la forma $y_{l}= \complexnum{1 + 0.55j}$.Para adaptar la línea nos deberemos desplazar una distancia $l = \num{0.17} \lambda $ en dirección al generador, con lo que adaptamos su parte real.}
+        \part{Dado que la impedancia viene dada por $Z_{l} = \complexqty{25 +j15}{\ohm}$, luego la impedancia normalizada es $z_{l}= \complexnum{0.5 +0.3j}$, mientras que su admitancia normalizada vendrá dada por $y_{l} =\complexnum{1.47-0.88j}$, extendiendo los valores de $y_{l}$ a los extremos de la carta smith se obtiene un valor aproximado de $0.375\lambda$, una vez formada la circunferencia unitaria se extiende la línea en la intersección, con lo que finalmente se obtiene una admitancia de la forma $y_{l}= \complexnum{1 + 0.75j}$.Para adaptar la línea nos deberemos desplazar una distancia $l = \num{0.345} \lambda $ en dirección al generador, con lo que adaptamos su parte real.}
 
-        \part{Para obtener la distancia a la que el \textit{stub} adaptará la parte compleja $\complexnum{1.4j}$, se realiza la extension hacia el $\complexnum{-1.4j}$ para eliminar la parte compleja, y se desplaza en dirección hacia la carga hasta el extremo derecho de la carta Smith, dando un valor de $l_\text{cc}= \num{0.17}\lambda$ para el caso de circuito cerrado, mientras que para el circuito abierto se obtiene $l_\text{ca} = \num{0.42} \lambda$}.
+        \part{Para obtener la distancia a la que el \textit{stub} adaptará la parte compleja $\complexnum{0.75j}$, se realiza la extension hacia el $\complexnum{-0.75j}$ para eliminar la parte compleja, y se desplaza en dirección hacia la carga hasta el extremo derecho de la carta Smith, dando un valor de $l_\text{cc}= \num{0.15}\lambda$ para el caso de circuito cerrado, mientras que para el circuito abierto se obtiene $l_\text{ca} = \num{0.4} \lambda$}.
         
         \part{El alumno debe describir el uso de la admitancia y la razón de la intersección con la circunferencia unitaria para la adaptación de la parte real, además debe comentar porque se elimina la parte compleja y como se realiza dicho proceso.}
       \end{parts}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.11)  12 JUN 2025 15:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.11)  12 JUN 2025 16:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -903,7 +903,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 [1
 
 {C:/Users/Gonzalo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../fcfm_die.pdf>]
-This exam contains 1 questions with 3 parts, 0 subparts, and 0 subsubparts.
+This exam contains 1 questions with 4 parts, 0 subparts, and 0 subsubparts.
 (pregunta.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
@@ -911,15 +911,15 @@ L3 programming layer <2024-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 57890 strings out of 473898
- 1577076 string characters out of 5725535
- 2348487 words of memory out of 5000000
- 80094 multiletter control sequences out of 15000+600000
+ 57895 strings out of 473898
+ 1577140 string characters out of 5725535
+ 2349487 words of memory out of 5000000
+ 80099 multiletter control sequences out of 15000+600000
  565771 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,7n,101p,836b,845s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,7n,101p,804b,845s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on pregunta.pdf (1 page, 150646 bytes).
+Output written on pregunta.pdf (1 page, 151103 bytes).
 PDF statistics:
  47 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

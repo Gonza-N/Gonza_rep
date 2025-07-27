@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1749756055.80102 "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/uguig/pregunta.tex" "pregunta.pdf" "pregunta" 1749756057.91088 0
+["pdflatex"] 1749759322.07617 "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/uguig/pregunta.tex" "pregunta.pdf" "pregunta" 1749759324.37695 0
   "../fcfm_die.pdf" 1723410588 68372 58fca911fad9f2323ab3bd83506d01cc ""
   "../tarea.sty" 1732666147 2021 de7f72d333948d71fc52589d506aa750 ""
   "C:/Users/Gonzalo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1735348281 82216 ba360cc5ecac06b3e0cd0381ad6fcbaf ""
@@ -261,9 +261,9 @@
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/ulem/ulem.sty" 1578651445 15682 94f55b803e160cf7fb6e4d77d07cfe1d ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/was/upgreek.sty" 1665850770 5794 9054e31be15d93f1e6bd28cca2b6643f ""
   "C:/Users/Gonzalo/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/uguig/pregunta.tex" 1749756052 3595 3b425c02cb1a5953502538fef5120aaf ""
-  "pregunta.aux" 1749756057 1311 00c3bc2622bc9e79d53c8e7dd2c9445c "pdflatex"
-  "pregunta.tex" 1749756052 3595 3b425c02cb1a5953502538fef5120aaf ""
+  "c:/Users/Gonzalo/Documents/GitHub/Gonza_rep/uguig/pregunta.tex" 1749759319 3773 d3c730bb75ee50ef795b43682a3021a5 ""
+  "pregunta.aux" 1749759324 1456 b7e12b9d0b981dfb07f446edceb11821 "pdflatex"
+  "pregunta.tex" 1749759319 3773 d3c730bb75ee50ef795b43682a3021a5 ""
   (generated)
   "pregunta.aux"
   "pregunta.log"
